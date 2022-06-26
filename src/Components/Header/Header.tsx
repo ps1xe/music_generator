@@ -7,9 +7,9 @@ const Header = () => {
         <header>
 
             <div style={{ display: "flex" }}>
-                <Link to='\main' className='menu_button'>Home</Link>
-                <Link to='\contacs' className='menu_button'>About</Link>
-                <Link to='\contacs' className='menu_button'>Contacs</Link>
+                <Link to='/main' className='menu_button'>Home</Link>
+                <Link to='/about' className='menu_button'>About</Link>
+                <Link to='/contacs' className='menu_button'>Contacs</Link>
             </div>
 
 

@@ -1,6 +1,6 @@
-body {
+/* body {
     overflow: hidden;
-}
+} */
 
 .contact-box {
     justify-content: space-between;
@@ -8,7 +8,7 @@ body {
     padding-right: 500px;
     display: flex;
     align-items: center;
-    height: 900px;
+    height: 855px;
 }
 
 .contact-header {
