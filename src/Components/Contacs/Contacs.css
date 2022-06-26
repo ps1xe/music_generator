@@ -1,0 +1,45 @@
+body {
+    overflow: hidden;
+}
+
+.contact-box {
+    justify-content: space-between;
+    padding-left: 300px;
+    padding-right: 500px;
+    display: flex;
+    align-items: center;
+    height: 900px;
+}
+
+.contact-header {
+    color: #fefefe;
+    font-size: 150px;
+    width: 650px;
+    margin-bottom: 150px;
+    margin-right: 100px;
+}
+
+.contact-content {
+    color: #fefefe;
+    margin-bottom: 150px;
+}
+
+.job-title {
+    color: #0d6efd;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: #fefefe;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.contact-link-header {
+    font-size: 20px;
+    font-weight: 900;
+    color: rgb(131, 131, 131);
+    margin-top: 10px;
+}

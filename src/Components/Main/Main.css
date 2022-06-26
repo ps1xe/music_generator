@@ -1,0 +1,23 @@
+body {
+    overflow: hidden;
+}
+
+.box_centre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 800px;
+    /* background: #000 url(https://i.gifer.com/fxVE.gif) no-repeat center; */
+}
+
+.start_button {
+    margin-top: 40px;
+    border: none;
+    background: #861657;
+    color: white;
+    width: 200px;
+    font-weight: 700;
+    font-size: 25px;
+    height: 50px;
+}

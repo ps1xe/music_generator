@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>React App</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+</body>
+
+<!-- AOS Script-->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+<!-- Vanta.js Script-->
+<script src="three.min.js"></script>
+<script src="vanta.net.min.js"></script>
+<script>
+    VANTA.NET({
+        el: "body",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 970,
+        minWidth: 1920,
+        scale: 1.00,
+        scaleMobile: 1.00
+    })
+</script>
+
+</html>

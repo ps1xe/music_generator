@@ -1,0 +1,37 @@
+.about {
+    display: grid;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.about-header {
+    height: 900px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: #fefefe;
+    font-size: 150px;
+    margin-bottom: 100px;
+}
+
+.boxinfo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 150px;
+}
+
+.boxinfo-boxtext {
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.boxinfo-header {
+    color: #0053ff;
+}
+
+.boxinfo-content {
+    margin-top: 20px;
+    color: #fefefe;
+}
