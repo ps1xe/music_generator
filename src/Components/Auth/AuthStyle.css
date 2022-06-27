@@ -1,0 +1,14 @@
+.auth-page {
+    background: #0c1019;
+    height: 94.1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.exit-form-auth {
+    text-decoration: none;
+    width: 50px;
+    height: 20px;
+}

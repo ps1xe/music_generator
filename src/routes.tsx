@@ -1,8 +1,10 @@
 import About from "./Components/About/About"
 import Contacs from "./Components/Contacs/Contacs"
-import Home from "./Components/Home/Home"
+import Login from "./Components/Auth/Login/Login"
 import Main from "./Components/Main/Main"
+import Registration from "./Components/Auth/Registration/Registration"
 import { ConstsRoutes } from "./utils/consts"
+import Home from "./Components/Home/Home"
 
 
 export const authRoutes = [
@@ -29,6 +31,16 @@ export const publicRoutes = [
     {
         path: ConstsRoutes.CONTACS_ROUTE,
         Component: Contacs
+    },
+
+    {
+        path: ConstsRoutes.LOGIN_ROUTE,
+        Component: Login
+    },
+
+    {
+        path: ConstsRoutes.REGISTRATION_ROUTE,
+        Component: Registration
     },
 
 ]

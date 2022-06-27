@@ -3,7 +3,7 @@ import { authRoutes, publicRoutes } from "./routes";
 
 const AppRouter = () => {
 
-    const isAuth = !!localStorage.getItem('token')
+    const isAuth = true;
     return (
 
         <Routes >

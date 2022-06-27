@@ -27,4 +27,6 @@ header {
     border: 2px #aeafaf solid;
     border-radius: 13px;
     margin-right: 1%;
+    text-decoration: none;
+    text-align: center;
 }
