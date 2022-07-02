@@ -16,10 +16,17 @@
     text-align: center;
     margin-top: 40px;
     border: none;
-    background: #861657;
+    background: #0d6efd;
     color: white;
     width: 200px;
     font-weight: 500;
     font-size: 30px;
     height: 50px;
+}
+
+.start_button:hover {
+    color: white;
+    box-shadow: 1px 1px #063c8d, 2px 2px #063c8d, 3px 3px #063c8d, 4px 4px #063c8d, 5px 5px #063c8d, 6px 6px #063c8d, 7px 7px #063c8d;
+    -webkit-transform: translateX(-7px);
+    transform: translateX(-7px);
 }

@@ -1,10 +1,10 @@
-import Header from "../Header/Header";
+import DefaultNavbar from "../Header/DefaultNavbar";
 import "./Contacs.css"
 
 const Contacs = () => {
     return (
         <>
-        <Header/>
+        <DefaultNavbar/>
         <div className="contact-box">
             <div className="contact-header">GET IN CONTACT</div>
             <div className="contact-content">

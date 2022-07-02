@@ -1,11 +1,11 @@
-import Header from "../Header/Header";
+import DefaultNavbar from "../Header/DefaultNavbar";
 import "./About.css"
 const About = () => {
 
     return (
 
         <>
-            <Header />
+            <DefaultNavbar />
             <div className="about">
                 <div className="about-header">
                     <div style={{ marginBottom: "140px" }}>

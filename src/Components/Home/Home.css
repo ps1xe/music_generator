@@ -1,0 +1,46 @@
+.home-background {
+    display: flex;
+    background: #0c1019;
+    height: 92.5vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-generate {
+    background: white;
+    display: flex;
+    width: 95%;
+    border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.menu-generate:hover {
+    box-shadow: 0 0 6px 3px rgba(0, 4, 252, 0.877);
+}
+
+.name-music {
+    outline: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: none;
+    padding-right: 5px;
+    border-right: 1px #0c1019 solid;
+}
+
+.genre-select {
+    padding-left: 10px;
+    padding-right: 5px;
+    outline: none;
+    border: none;
+    border-right: 1px #0c1019 solid;
+}
+
+.time-music {
+    padding-left: 10px;
+    padding-right: 5px;
+    outline: none;
+    border: none;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}

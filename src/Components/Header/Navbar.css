@@ -1,0 +1,45 @@
+.menu_button {
+    padding: 8px;
+    border: none;
+    font-size: 20px;
+    background: 0%;
+    text-decoration: none;
+    color: #fefefe;
+}
+
+.auth_button {
+    font-size: 20px;
+    width: 100px;
+    background: 0%;
+    color: #fefefe;
+    border: 2px #aeafaf solid;
+    border-radius: 13px;
+    margin-right: 1%;
+    text-decoration: none;
+    text-align: center;
+}
+
+.menu_button:hover {
+    color: #fefefe;
+}
+
+.auth_button:hover {
+    color: #fefefe;
+    border: 2px #0053ff solid;
+}
+
+.menu_button:after {
+    background-color: #0053ff;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+
+.menu_button:hover:after,
+.menu_button:focus:after {
+    width: 100%;
+}

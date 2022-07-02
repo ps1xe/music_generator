@@ -43,3 +43,23 @@
     color: rgb(131, 131, 131);
     margin-top: 10px;
 }
+
+.contact-link:hover {
+    color: #fefefe;
+}
+
+.contact-link:after {
+    background-color: #0053ff;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+
+.contact-link:hover:after,
+.contact-link:focus:after {
+    width: 100%;
+}
