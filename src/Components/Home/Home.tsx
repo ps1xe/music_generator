@@ -17,6 +17,7 @@ const Home = () => {
                             <option selected>Phonk</option>
                             <option value="1">Classical</option>
                             <option value="2">Jazz</option>
+                            <option value="3">Rock</option>
                         </select>
 
                         <input className="time-music" style={{ width: "10%", minWidth: "85px" }} type="time" />
