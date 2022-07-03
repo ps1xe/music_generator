@@ -1,27 +1,18 @@
-/* body {
-    overflow: hidden;
-} */
-
 .contact-box {
-    justify-content: space-between;
-    padding-left: 300px;
-    padding-right: 500px;
+    justify-content: space-evenly;
     display: flex;
     align-items: center;
-    height: 855px;
+    height: 100vh;
 }
 
 .contact-header {
+    text-align: center;
     color: #fefefe;
-    font-size: 150px;
-    width: 650px;
-    margin-bottom: 150px;
-    margin-right: 100px;
+    font-size: 80px;
 }
 
 .contact-content {
     color: #fefefe;
-    margin-bottom: 150px;
 }
 
 .job-title {
@@ -62,4 +53,10 @@
 .contact-link:hover:after,
 .contact-link:focus:after {
     width: 100%;
+}
+
+@media(max-width:1200px) {
+    .contact-box {
+        flex-direction: column;
+    }
 }

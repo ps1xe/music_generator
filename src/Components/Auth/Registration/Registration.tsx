@@ -18,7 +18,7 @@ const Registration = () => {
                 </Link>
             </div>
             <div className="auth-page">
-                <div className="alert alert-dark" style={{ width: "25%", background: "#0c141c" }}>
+                <div className="auth-block">
                     <form style={{ margin: "auto" }}>
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Login</label>

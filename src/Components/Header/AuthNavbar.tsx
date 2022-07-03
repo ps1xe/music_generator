@@ -1,11 +1,11 @@
-import { Container, Nav, NavDropdown, Navbar, Form, Offcanvas, FormControl, Button } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Navbar, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css"
 
 const AuthNavbar = () => {
     return (
 
-        <Navbar bg="dark" expand="sm" variant="dark" fixed="top" style={{ background: "#161B22" }}>
+        <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#161B22" }}>
             <Container fluid>
                 {/* <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand> */}
                 <Navbar.Toggle aria-controls='offcanvasNavbar-expand-sm' />

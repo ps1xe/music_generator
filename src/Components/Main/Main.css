@@ -3,11 +3,13 @@
 } */
 
 .box_centre {
+    width: 100vw;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    min-height: 800px;
+    min-height: 750px;
+    height: 100vh;
     /* background: #000 url(https://i.gifer.com/fxVE.gif) no-repeat center; */
 }
 

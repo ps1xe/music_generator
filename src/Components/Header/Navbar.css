@@ -9,8 +9,10 @@
 }
 
 .auth_button {
-    font-size: 20px;
+    margin-top: 9px;
+    font-size: 22px;
     width: 100px;
+    height: 70%;
     background: 0%;
     color: #fefefe;
     border: 2px #aeafaf solid;
