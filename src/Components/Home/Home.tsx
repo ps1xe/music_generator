@@ -7,19 +7,19 @@ const Home = () => {
             <AuthNavbar />
             <div className="home-background">
 
-                <div style={{ display: "flex", marginTop: "3%", justifyContent: "space-between", width: "90%" }}>
+                <div style={{ display: "flex", marginTop: "130px", justifyContent: "space-between", width: "90%" }}>
 
                     <form className="menu-generate">
 
                         <input className="name-music" style={{ width: "50%" }} placeholder="name" />
 
-                        <select className="genre-select" style={{ width: "45%" }}>
+                        <select className="genre-select" style={{ width: "45%", minWidth:"100px" }}>
                             <option selected>Phonk</option>
                             <option value="1">Classical</option>
                             <option value="2">Jazz</option>
                         </select>
 
-                        <input className="time-music" style={{ width: "10%", minWidth: "100px" }} type="time" />
+                        <input className="time-music" style={{ width: "10%", minWidth: "85px" }} type="time" />
 
                     </form>
 
@@ -27,7 +27,7 @@ const Home = () => {
 
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "12%" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "20vh" }}>
                     <img style={{ height: "200px", width: "400px" }} src='https://i.yapx.ru/So2wJ.png' alt='pixlr-bg-result.png' />
                     <div style={{ color: "white", fontSize: "20px", marginTop: "10px" }} >You have no entries :(</div>
                 </div>

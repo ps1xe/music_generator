@@ -1,7 +1,8 @@
 .home-background {
     display: flex;
     background: #0c1019;
-    height: 92.5vh;
+    height: 100vh;
+    width: 100vw;
     flex-direction: column;
     align-items: center;
 }

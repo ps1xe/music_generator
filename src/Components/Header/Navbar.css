@@ -1,5 +1,6 @@
 .menu_button {
     padding: 8px;
+    padding-top: 14px;
     border: none;
     font-size: 20px;
     background: 0%;
@@ -42,4 +43,13 @@
 .menu_button:hover:after,
 .menu_button:focus:after {
     width: 100%;
+}
+
+.dropdown-text {
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-text:hover {
+    color: black;
 }
