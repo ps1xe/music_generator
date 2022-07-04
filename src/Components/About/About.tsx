@@ -12,7 +12,7 @@ const About = () => {
                 </div>
 
                 <div className="boxinfo" data-aos="zoom-out-up">
-                    <img className="pictures-inf"  src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-08-1024x576.png.webp?v=1.0.8" />
+                    <img className="pictures-inf"  src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-08-1024x576.png" />
                     <div className="boxinfo-boxtext">
                         <div className="boxinfo-header"> What the app does?</div>
                         <div className="boxinfo-content">An instrument that turns the user into both a composer and a conductor of an improvising ensemble:
@@ -22,7 +22,7 @@ const About = () => {
                 </div>
 
                 <div className="boxinfo" data-aos="zoom-out-up">
-                <img className="pictures-inf" src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-18-1024x576.jpg.webp?v=1.0.8" />
+                <img className="pictures-inf" src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-18-1024x576.jpg" />
                     <div className="boxinfo-boxtext">
                         <div className="boxinfo-header"> What the app does?</div>
                         <div className="boxinfo-content">An instrument that turns the user into both a composer and a conductor of an improvising ensemble:
@@ -33,7 +33,7 @@ const About = () => {
                 </div>
 
                 <div className="boxinfo" data-aos="zoom-out-up">
-                    <img className="pictures-inf" src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-13-1024x576.png.webp?v=1.0.8" />
+                    <img className="pictures-inf" src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-13-1024x576.png" />
                     <div className="boxinfo-boxtext">
                         <div className="boxinfo-header"> What the app does?</div>
                         <div className="boxinfo-content">An instrument that turns the user into both a composer and a conductor of an improvising ensemble:
