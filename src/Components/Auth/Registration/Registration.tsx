@@ -21,9 +21,15 @@ const Registration = () => {
                 <div className="auth-block">
                     <form style={{ margin: "auto" }}>
                         <div className="mb-3">
-                            <label className="form-label" style={{ color: "#c9ced6" }}>Login</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <label className="form-label" style={{ color: "#c9ced6" }}>Email</label>
+                            <input type="email" className="form-control" aria-describedby="emailHelp" />
                         </div>
+
+                        <div className="mb-3">
+                            <label className="form-label" style={{ color: "#c9ced6" }}>Login</label>
+                            <input type="text" className="form-control" />
+                        </div>
+
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Password</label>
                             <input type="password" className="form-control" />
@@ -33,7 +39,7 @@ const Registration = () => {
                             <input type="password" className="form-control" />
                         </div>
                         <div className="mb-3 form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                            <input type="checkbox" className="form-check-input" />
                             <label className="form-check-label" style={{ color: "#c9ced6" }}>Check me out</label>
                         </div>
                         <button style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
