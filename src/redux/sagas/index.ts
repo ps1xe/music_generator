@@ -1,7 +1,8 @@
-import { all, Effect } from "redux-saga/effects.js";
-import { watcherAuthSaga } from "./auth.saga.js";
-import { watcherSoundsSaga } from "./sounds.saga.js";
+import { all, Effect } from "redux-saga/effects";
+import { watcherAuthSaga } from "./auth.saga";
+import { watcherSoundsSaga } from "./sounds.saga";
+import { watcherUserSaga } from "./users.saga";
 
 export default function* rootSaga(): Generator<Effect, void> {
-  yield all([watcherAuthSaga(), watcherSoundsSaga()]);
+  yield all([watcherAuthSaga(), watcherSoundsSaga(), watcherUserSaga()]);
 }

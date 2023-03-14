@@ -1,13 +1,13 @@
-import { call, Effect, put, takeEvery } from "redux-saga/effects.js";
-import UsersService from "../../services/user.service.js";
-import { ChangingAvatarResponse } from "../../types/users.types.js";
-import { requestSoundFailed } from "../actions/sound.actions.js";
+import { call, Effect, put, takeEvery } from "redux-saga/effects";
+import UsersService from "../../services/user.service";
+import { ChangingAvatarResponse } from "../../types/users.types";
+import { requestSoundFailed } from "../actions/sound.actions";
 import {
   ChangePassword,
   ChangingAvatar,
   requestUserSuccess,
   UserActions,
-} from "../actions/users.actions.js";
+} from "../actions/users.actions";
 
 function* changingAvatarSaga(
   action: ChangingAvatar

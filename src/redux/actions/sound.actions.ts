@@ -1,4 +1,4 @@
-import { GenerateBody, Sounds } from "../../types/sound.types.js";
+import { GenerateBody, Sounds } from "../../types/sound.types";
 
 export const requestSoundSuccess = (type: SoundActions, payload?: any) => ({
   type,

@@ -1,7 +1,7 @@
 import {
   ChangePasswordBody,
   ChangingAvatarResponse,
-} from "../../types/users.types.js";
+} from "../../types/users.types";
 
 export const requestUserSuccess = (type: UserActions, payload?: any) => ({
   type,

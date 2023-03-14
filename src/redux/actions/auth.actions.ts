@@ -3,7 +3,7 @@ import {
   GetLinkToResetPasswordBody,
   LoginBody,
   RegistrationBody,
-} from "../../types/auth.types.js";
+} from "../../types/auth.types";
 
 export const requestAuthSuccess = (type: AuthActions, payload?: any) => ({
   type,
@@ -94,3 +94,8 @@ export interface GetLinkToResetPasswordSuccess {
   type: AuthActions.SUCCESS_GET_LINK_TO_RESET_PASSWORD;
   payload: object;
 }
+
+export type AuthStateTypes =
+  | LoginSuccess
+  | RegistrationSuccess
+  | UpdateTokensSuccess;

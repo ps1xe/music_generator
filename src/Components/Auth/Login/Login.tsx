@@ -1,7 +1,34 @@
+import { ChangeEvent, useState, MouseEvent } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { login } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css"
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
+
+    const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+      }
+
+    const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value)
+      }
+
+
+    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+        if (!email.trim() || !password.trim()) return;
+    
+        dispatch(login({ email, password }));
+    
+        setEmail('');
+        setPassword('');
+      }
+
+
     return (
         <>
             <div style={{ background: "#0c1019" }}>
@@ -22,18 +49,18 @@ const Login = () => {
                     <form style={{ margin: "auto" }}>
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Email</label>
-                            <input type="email" className="form-control" aria-describedby="emailHelp" />
+                            <input onChange={emailChange} type="email" className="form-control" aria-describedby="emailHelp" />
                             <div id="emailHelp" className="form-text" style={{ color: "#c9ced6" }}>We'll never share your Login with anyone else.</div>
                         </div>
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Password</label>
-                            <input type="password" className="form-control"  />
+                            <input onChange={passwordChange} type="password" className="form-control"  />
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" />
                             <label className="form-check-label" style={{ color: "#c9ced6" }}>Check me out</label>
                         </div>
-                        <button style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign In</button>
+                        <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign In</button>
                     </form>
                     <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>New user?⠀
                         <Link to="/reg">Create an account.</Link>

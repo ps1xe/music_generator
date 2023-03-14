@@ -1,5 +1,5 @@
-import { Sounds } from "../../types/sound.types.js";
-import { GetSoundsSuccess } from "../actions/sound.actions.js";
+import { Sounds } from "../../types/sound.types";
+import { GetSoundsSuccess } from "../actions/sound.actions";
 
 export const initialState = {
   soundsInfo: [],

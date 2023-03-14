@@ -1,5 +1,5 @@
-import { ChangingAvatarResponse } from "../../types/users.types.js";
-import { ChangingAvatarSuccess } from "../actions/users.actions.js";
+import { ChangingAvatarResponse } from "../../types/users.types";
+import { ChangingAvatarSuccess } from "../actions/users.actions";
 
 export const initialState = {
   url: "",

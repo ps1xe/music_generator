@@ -1,7 +1,43 @@
+import { ChangeEvent, useState, MouseEvent } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { registration } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css";
 
 const Registration = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [repetePassword, setRepetePassword] = useState('');
+    const dispatch = useDispatch();
+
+    const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+      }
+
+    const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value)
+      }
+
+    const usernameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value)
+      }
+
+    const repetePasswordChange  = (event: ChangeEvent<HTMLInputElement>) => {
+        setRepetePassword(event.target.value)
+    }
+
+    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+        if (!email.trim() || !password.trim()) return;
+    
+        dispatch(registration({ email, username, password }));
+    
+        setEmail('');
+        setPassword('');
+        setUsername('');
+      }
+
     return (
         <>
             <div style={{ background: "#0c1019" }}>
@@ -22,27 +58,27 @@ const Registration = () => {
                     <form style={{ margin: "auto" }}>
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Email</label>
-                            <input type="email" className="form-control" aria-describedby="emailHelp" />
+                            <input onChange={emailChange} type="email" className="form-control" aria-describedby="emailHelp" />
                         </div>
 
                         <div className="mb-3">
-                            <label className="form-label" style={{ color: "#c9ced6" }}>Login</label>
-                            <input type="text" className="form-control" />
+                            <label className="form-label" style={{ color: "#c9ced6" }}>Username</label>
+                            <input onChange={usernameChange} type="text" className="form-control" />
                         </div>
 
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Password</label>
-                            <input type="password" className="form-control" />
+                            <input onChange={passwordChange} type="password" className="form-control" />
                         </div>
                         <div className="mb-3">
                             <label className="form-label" style={{ color: "#c9ced6" }}>Repete Password</label>
-                            <input type="password" className="form-control" />
+                            <input onChange={repetePasswordChange} type="password" className="form-control" />
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" />
                             <label className="form-check-label" style={{ color: "#c9ced6" }}>Check me out</label>
                         </div>
-                        <button style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
+                        <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
                     </form>
                     <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>Already have an account?⠀
                         <Link to="/login">Sign In</Link>

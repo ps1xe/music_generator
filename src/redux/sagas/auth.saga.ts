@@ -1,6 +1,6 @@
-import { call, Effect, put, takeEvery } from "redux-saga/effects.js";
-import AuthService from "../../services/auth.service.js";
-import { AuthenticationResponse } from "../../types/auth.types.js";
+import { call, Effect, put, takeEvery } from "redux-saga/effects";
+import AuthService from "../../services/auth.service";
+import { AuthenticationResponse } from "../../types/auth.types";
 import {
   AuthActions,
   GetLinkToResetPassword,
@@ -9,7 +9,7 @@ import {
   requestAuthFailed,
   requestAuthSuccess,
   UpdateTokens,
-} from "../actions/auth.actions.js";
+} from "../actions/auth.actions";
 
 function* loginSaga(
   action: Login

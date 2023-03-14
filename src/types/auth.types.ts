@@ -18,3 +18,9 @@ export interface AuthenticationResponse {
   username: string;
   avatar: string;
 }
+
+export interface AuthState {
+  email: string;
+  username: string;
+  avatar: string;
+}

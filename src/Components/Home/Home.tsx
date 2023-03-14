@@ -1,7 +1,30 @@
+import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import AuthNavbar from "../Header/AuthNavbar";
 import "./Home.css"
 
 const Home = () => {
+
+
+
+    const [soundName, setSoundName] = useState('');
+    const [soundTime, setSoundTime] = useState('');
+    const [genre, setGenre] = useState('');
+    const dispatch = useDispatch();
+
+    const soundNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setSoundName(event.target.value);
+      }
+
+      const soundTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setSoundTime(event.target.value);
+      }
+
+      const genreChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setGenre(event.target.value);
+        console.log(genre)
+      }
+
     return (
         <>
             <AuthNavbar />
@@ -11,16 +34,16 @@ const Home = () => {
 
                     <form className="menu-generate">
 
-                        <input className="name-music" style={{ width: "50%" }} placeholder="name" />
+                        <input onChange={soundNameChange} className="name-music" style={{ width: "50%" }} placeholder="name" />
 
-                        <select className="genre-select" style={{ width: "45%", minWidth:"100px" }}>
-                            <option selected>Phonk</option>
-                            <option value="1">Classical</option>
-                            <option value="2">Jazz</option>
-                            <option value="3">Rock</option>
+                        <select value={genre} onChange={genreChange} className="genre-select" style={{ width: "45%", minWidth:"100px" }}>
+                            <option value="Phonk">Phonk</option>
+                            <option value="Classical">Classical</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Rock">Rock</option>
                         </select>
 
-                        <input className="time-music" style={{ width: "10%", minWidth: "85px" }} type="time" />
+                        <input onChange={soundTimeChange} className="time-music" style={{ width: "10%", minWidth: "85px" }} type="time" />
 
                     </form>
 

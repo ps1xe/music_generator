@@ -4,10 +4,10 @@ import {
   requestSoundSuccess,
   requestSoundFailed,
   SoundActions,
-} from "../actions/sound.actions.js";
+} from "../actions/sound.actions";
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
-import SoundService from "../../services/sound.service.js";
-import { GeneratedSound, Sounds } from "../../types/sound.types.js";
+import SoundService from "../../services/sound.service";
+import { GeneratedSound, Sounds } from "../../types/sound.types";
 
 function* getSoundsSaga(action: GetSounds): Generator<Effect, void, Sounds> {
   try {

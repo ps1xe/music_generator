@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import $api from "../http/index.js";
+import $api from "../http/index";
 import {
   ChangePasswordBody,
   ChangingAvatarResponse,
