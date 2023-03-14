@@ -1,0 +1,4 @@
+export enum UserActions {
+  CHANGING_AVATAR = "CHANGING_AVATAR",
+  CHANGE_PASSWORD = "CHANGEPASSWORD",
+}

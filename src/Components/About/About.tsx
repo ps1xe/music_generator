@@ -11,8 +11,8 @@ const About = () => {
                         Web application for music generation
                 </div>
 
-                <div className="boxinfo" data-aos="zoom-out-up">
-                    <img className="pictures-inf"  src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-08-1024x576.png" />
+                <div className="boxinfo" style={{paddingTop: "20vh"}} data-aos="zoom-out-up">
+                    <img className="pictures-inf" src="https://maxilla.s3.amazonaws.com/web/wp-content/uploads/2021/01/WT100-08-1024x576.png" />
                     <div className="boxinfo-boxtext">
                         <div className="boxinfo-header"> What the app does?</div>
                         <div className="boxinfo-content">An instrument that turns the user into both a composer and a conductor of an improvising ensemble:
