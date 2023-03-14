@@ -2,6 +2,7 @@ import { Sounds } from "../../types/sound.types.js";
 import { GetSoundsSuccess } from "../actions/sound.actions.js";
 
 export const initialState = {
+  soundsInfo: [],
   sounds: [],
   meta: {
     page: 1,

@@ -6,7 +6,7 @@ export const requestSoundSuccess = (type: SoundActions, payload?: any) => ({
 });
 
 export const requestSoundFailed = () => ({
-  type: "REQUEST_TASK_FAILED",
+  type: "REQUEST_SOUND_FAILED",
 });
 
 export enum SoundActions {

@@ -11,7 +11,7 @@ export const requestAuthSuccess = (type: AuthActions, payload?: any) => ({
 });
 
 export const requestAuthFailed = () => ({
-  type: "REQUEST_TASK_FAILED",
+  type: "REQUEST_AUTH_FAILED",
 });
 
 export enum AuthActions {
