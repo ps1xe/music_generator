@@ -1,4 +1,5 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
+import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { registration } from "../../../redux/actions/auth.actions";
@@ -10,47 +11,56 @@ const Registration = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [repetePassword, setRepetePassword] = useState('');
+    const [passwordComparison, setPasswordComparison] = useState(true);
     const dispatch = useDispatch();
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
-      }
+    }
 
     const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
-      }
+        event.target.value !== repetePassword ? setPasswordComparison(false) : setPasswordComparison(true);
+    }
 
     const usernameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value)
-      }
+    }
 
-    const repetePasswordChange  = (event: ChangeEvent<HTMLInputElement>) => {
+    const repetePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setRepetePassword(event.target.value)
+        event.target.value !== password ? setPasswordComparison(false) : setPasswordComparison(true);
     }
 
     const handleSubmit = (event: MouseEvent<HTMLElement>) => {
-        if (!email.trim() || !password.trim()) return;
-    
+        if (!email.trim() || !password.trim()) {
+            event.preventDefault();
+            return;
+        }
+        if (!passwordComparison) { 
+            event.preventDefault();
+            return;
+        }
+
         dispatch(registration({ email, username, password }));
-    
+
         setEmail('');
         setPassword('');
         setUsername('');
-      }
+    }
+
 
     return (
         <>
             <div style={{ background: "#0c1019" }}>
                 <Link className="exit-form-auth" to="/main">
-                    {/* Ошибка */}
                     <svg style={{ marginTop: "4px" }} fill="none" stroke="#ffffff" height="50" viewBox="0 0 24 24" width="50"
-                        xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
+                        xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd"
                             d="M15.0303 6.46967C15.3232 6.76256 15.3232 7.23744 15.0303 7.53033L10.5607 12L15.0303 
                 16.4697C15.3232 16.7626 15.3232 17.2374 15.0303 17.5303C14.7374 17.8232 14.2626 
                 17.8232 13.9697 17.5303L8.96967 12.5303C8.82902 12.3897 8.75 12.1989 8.75 12C8.75 11.8011 
                 8.82902 11.6103 8.96967 11.4697L13.9697 6.46967C14.2626 6.17678 14.7374 6.17678 15.0303 6.46967Z"
-                            fill="black" fill-rule="evenodd" /></svg>
-                    {/* Ошибка */}
+                            fill="black" fillRule="evenodd" /></svg>
                 </Link>
             </div>
             <div className="auth-page">
@@ -74,16 +84,14 @@ const Registration = () => {
                             <label className="form-label" style={{ color: "#c9ced6" }}>Repete Password</label>
                             <input onChange={repetePasswordChange} type="password" className="form-control" />
                         </div>
-                        <div className="mb-3 form-check">
-                            <input type="checkbox" className="form-check-input" />
-                            <label className="form-check-label" style={{ color: "#c9ced6" }}>Check me out</label>
-                        </div>
+
                         <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
                     </form>
                     <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>Already have an account?⠀
                         <Link to="/login">Sign In</Link>
                     </div>
                 </div>
+                {passwordComparison ? <div style={{ height: "6%", width: "25%" }}></div> : <Alert className="alert-block" key={'danger'} variant={'danger'}>Password mismatch!!!</Alert>}
             </div>
 
         </>

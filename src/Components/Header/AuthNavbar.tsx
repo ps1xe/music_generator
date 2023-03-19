@@ -28,16 +28,16 @@ const AuthNavbar = () => {
                         <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <NavDropdown
                                 style={{ width: "200px" }}
-                                title={<img style={{ width: "40px", height: "40px", borderRadius: "100%" }} src="https://i.imgur.com/6UXcOTs.png"></img>}
+                                title={<img alt="" style={{ width: "40px", height: "40px", borderRadius: "100%" }} src="https://i.imgur.com/6UXcOTs.png"></img>}
                                 id='offcanvasNavbarDropdown-expand-sm'
                             >
                                 <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>Signed in as UserName</div>
                                 <NavDropdown.Divider />
 
-                                <NavDropdown.Item> <Link className="dropdown-text" to="/profile">Your profile</Link></NavDropdown.Item>
-                                <NavDropdown.Item ><Link className="dropdown-text" to="/settings">Settings</Link></NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/profile">Your profile</NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/settings">Settings</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item> <Link className="dropdown-text" to="/main">Sign Out</Link></NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/main">Sign Out</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
 

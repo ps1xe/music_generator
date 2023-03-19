@@ -16,6 +16,20 @@
     padding-right: 5px;
 }
 
+.menu-generate-war {
+    background: white;
+    display: flex;
+    width: 95%;
+    box-shadow: 0 0 6px 3px rgb(255, 0, 55);
+    border-radius: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.menu-generate-war:hover {
+    box-shadow: 0 0 10px 3px rgb(255, 0, 55);
+}
+
 .menu-generate:hover {
     box-shadow: 0 0 6px 3px rgba(0, 4, 252, 0.877);
 }
@@ -27,6 +41,20 @@
     border: none;
     padding-right: 5px;
     border-right: 1px #0c1019 solid;
+}
+
+.name-music-war {
+    outline: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: none;
+    padding-right: 5px;
+    border-right: 1px #0c1019 solid;
+}
+
+.name-music-war::placeholder {
+    font-weight: 600;
+    color: rgb(255, 0, 55);
 }
 
 .genre-select {
