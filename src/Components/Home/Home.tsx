@@ -1,13 +1,14 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AuthNavbar from "../Header/AuthNavbar";
 import "./Home.css"
-import AudioPlayer from 'react-audio-player';
 import { generateSound, getSounds } from "../../redux/actions/sound.actions";
+import SoundPlayer from "./SoundPlayer";
+import { Pagination } from "react-bootstrap";
 
 const Home = () => {
-
-
+    let pages = []
+    let k = 0;
     const [soundName, setSoundName] = useState('');
     const [soundTime, setSoundTime] = useState('');
     const [genre, setGenre] = useState('Phonk');
@@ -51,7 +52,32 @@ const Home = () => {
         }
     }
 
-    dispatch(getSounds(1));
+    const onChangePage = (numPage: number) => {
+        dispatch(getSounds(numPage));
+    }
+
+    useEffect(() => { dispatch(getSounds(1)) }, [dispatch]);
+    const stateSounds = useSelector((state: any) => state.sounds)
+   
+    
+    console.log(stateSounds);
+
+    if (stateSounds.meta.hasPreviousPage) pages.push(<Pagination.Prev key="prev" onClick={() => onChangePage(stateSounds.meta.page - 1)} />);
+
+    if (stateSounds.meta.hasNextPage || stateSounds.meta.page !== 1) {
+        for (let page = 1; page <= stateSounds.meta.pageCount; page++) {
+            pages.push(
+                <Pagination.Item key={page} data-page={page} active={page === stateSounds.meta.page} onClick={() => onChangePage(page)}>{page}</Pagination.Item>
+            )
+        }
+
+        if (stateSounds.meta.hasNextPage) {
+            pages.push(
+                <Pagination.Next key="next" onClick={() => onChangePage(stateSounds.meta.page + 1)} />
+            )
+        }
+    }
+
 
     return (
         <>
@@ -79,7 +105,29 @@ const Home = () => {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "20vh" }}>
-                    <AudioPlayer style={{ marginBottom: "2%" }} src={"https://ruo.morsmusic.org/load/1983107670/Toby_Fox_-_MEGALOVANIA_(musmore.com).mp3"} controls />
+
+
+                    {stateSounds.soundsInfo.map((sound: any) => (
+                        <SoundPlayer
+                            key={"sound" + String(k++)}
+                            name={sound.name}
+                            genre={sound.genre}
+                            length={sound.length}
+                            url={sound.url}
+                        />
+                    ))}
+                    <Pagination>{pages}</Pagination>
+
+
+                    {/* <Pagination>
+                        <Pagination.First />
+                        <Pagination.Prev />
+                        <Pagination.Item>{1}</Pagination.Item>
+                        <Pagination.Ellipsis />
+                        <Pagination.Item active>{2}</Pagination.Item>
+                        <Pagination.Next />
+                        <Pagination.Last />
+                    </Pagination> */}
                     {/* <img style={{ height: "200px", width: "400px" }} src='https://i.yapx.ru/So2wJ.png' alt='pixlr-bg-result.png' />
                     <div style={{ color: "white", fontSize: "20px", marginTop: "10px" }} >You have no entries :(</div> */}
                 </div>

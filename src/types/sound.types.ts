@@ -1,6 +1,5 @@
 export interface Sounds {
   soundsInfo: string[];
-  sounds: string[];
   meta: {
     page: number;
     take: number;

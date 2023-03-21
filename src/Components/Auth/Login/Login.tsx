@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css"
@@ -29,13 +29,13 @@ const Login = () => {
             return;
         }
 
-        dispatch(login({ email, password }));
+        dispatch(login({ email, password }))
+
 
         setEmail('');
         setPassword('');
         event.preventDefault();
     }
-
 
     return (
         <>

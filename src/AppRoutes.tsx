@@ -6,8 +6,7 @@ const AppRouter = () => {
     const isAuth = true;
     return (
 
-        <Routes >
-
+        <Routes>
             {isAuth === true && authRoutes.map(({ path, Component }) =>
                 <Route key={path} path={path} element={<Component />} />
             )}

@@ -13,6 +13,7 @@ function* getSoundsSaga(action: GetSounds): Generator<Effect, void, Sounds> {
   try {
     const page = action.payload;
     const sounds = yield call(SoundService.getSounds, page);
+    // console.log(sounds)
     yield put(requestSoundSuccess(SoundActions.SUCCESS_GET_SOUNDS, sounds));
   } catch (exception) {
     yield put(requestSoundFailed());

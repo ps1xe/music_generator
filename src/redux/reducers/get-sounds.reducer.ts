@@ -1,9 +1,8 @@
 import { Sounds } from "../../types/sound.types";
-import { GetSoundsSuccess } from "../actions/sound.actions";
+import { GetSoundsSuccess, SoundActions } from "../actions/sound.actions";
 
 export const initialState = {
   soundsInfo: [],
-  sounds: [],
   meta: {
     page: 1,
     take: 10,
@@ -18,8 +17,10 @@ export const getSoundsReducer = (
   state: Sounds = initialState,
   action: GetSoundsSuccess
 ) => {
-  if (action.payload) {
-    return action.payload;
+  if (action.type === SoundActions.SUCCESS_GET_SOUNDS) {
+    if (action.payload) {
+      return action.payload;
+    }
   }
   return state;
 };

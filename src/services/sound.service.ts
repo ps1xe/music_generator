@@ -7,7 +7,7 @@ export default class SoundService {
     return (
       await $api.get("http://localhost:4000/users/getSounds", {
         withCredentials: true,
-        params: { page: page, take: 10, order: "DESC" },
+        params: { page: page, take: 2, order: "DESC" },
       })
     ).data;
   }

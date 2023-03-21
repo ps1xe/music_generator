@@ -73,3 +73,7 @@
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
 }
+
+.audio-player {
+    display: flex;
+}

@@ -7,12 +7,13 @@ export const initialState = {
   avatar: "",
 } as AuthState;
 
-export const changingAvatarReducer = (
+export const authReducer = (
   state: AuthState = initialState,
   action: AuthStateTypes
 ) => {
   switch (action.type) {
     case AuthActions.SUCCESS_LOGIN:
+      console.log(action.payload);
       return action.payload;
     case AuthActions.SUCCESS_REGISTRATION:
       return action.payload;
