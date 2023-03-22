@@ -1,3 +1,4 @@
+import { Profile } from "../../types/auth.types";
 import {
   ChangePasswordBody,
   ChangingAvatarResponse,
@@ -17,12 +18,20 @@ export enum UserActions {
   CHANGE_PASSWORD = "CHANGEPASSWORD",
   SUCCESS_CHANGING_AVATAR = "SUCCESS_CHANGING_AVATAR",
   SUCCESS_CHANGE_PASSWORD = "SUCCESS_CHANGE_PASSWORD",
+  GET_PROFILE = "GET_PROFILE",
+  SUCCESS_GET_PROFILE = "SUCCESS_GET_PROFILE",
 }
 
 export const changingAvatar = (payload: FormData) => {
   return {
     type: UserActions.CHANGING_AVATAR,
     payload,
+  };
+};
+
+export const getProfile = () => {
+  return {
+    type: UserActions.GET_PROFILE,
   };
 };
 
@@ -34,6 +43,10 @@ export const changePassword = (payload: ChangePasswordBody) => {
 };
 
 //Request
+
+export interface GetProfile {
+  type: UserActions.GET_PROFILE;
+}
 
 export interface ChangingAvatar {
   type: UserActions.CHANGING_AVATAR;
@@ -54,4 +67,9 @@ export interface ChangingAvatarSuccess {
 
 export interface ChangePasswordSuccess {
   type: UserActions.SUCCESS_CHANGE_PASSWORD;
+}
+
+export interface GetProfileSuccess {
+  type: UserActions.SUCCESS_GET_PROFILE;
+  payload: Profile;
 }

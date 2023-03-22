@@ -2,7 +2,13 @@ import { Container, Nav, NavDropdown, Navbar, Offcanvas } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./Navbar.css"
 
-const AuthNavbar = () => {
+export interface AuthProfileProps {
+    username: string;
+    avatarUrl: string;
+}
+
+
+const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
     return (
 
         <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#161B22" }}>
@@ -28,10 +34,10 @@ const AuthNavbar = () => {
                         <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <NavDropdown
                                 style={{ width: "200px" }}
-                                title={<img alt="" style={{ width: "40px", height: "40px", borderRadius: "100%" }} src="https://i.imgur.com/6UXcOTs.png"></img>}
+                                title={<img alt="" style={{ width: "40px", height: "40px", borderRadius: "100%" }} src={avatarUrl}></img>}
                                 id='offcanvasNavbarDropdown-expand-sm'
                             >
-                                <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>Signed in as UserName</div>
+                                <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>Signed in as {username}</div>
                                 <NavDropdown.Divider />
 
                                 <NavDropdown.Item className="dropdown-text" href="/profile">Your profile</NavDropdown.Item>

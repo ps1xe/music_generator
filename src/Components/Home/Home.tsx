@@ -5,6 +5,7 @@ import "./Home.css"
 import { generateSound, getSounds } from "../../redux/actions/sound.actions";
 import SoundPlayer from "./SoundPlayer";
 import { Pagination } from "react-bootstrap";
+import { getProfile } from "../../redux/actions/users.actions";
 
 const Home = () => {
     let pages = []
@@ -22,7 +23,6 @@ const Home = () => {
         setNameSoundClass("name-music");
         setformClass("menu-generate");
         setPlaceholderSoundName("name")
-
     }
 
     const soundTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,9 +58,9 @@ const Home = () => {
 
     useEffect(() => { dispatch(getSounds(1)) }, [dispatch]);
     const stateSounds = useSelector((state: any) => state.sounds)
-   
-    
-    console.log(stateSounds);
+    useEffect(() => { dispatch(getProfile()) }, [dispatch])
+    const stateProfile = useSelector((state: any) => state.profile)
+
 
     if (stateSounds.meta.hasPreviousPage) pages.push(<Pagination.Prev key="prev" onClick={() => onChangePage(stateSounds.meta.page - 1)} />);
 
@@ -81,7 +81,12 @@ const Home = () => {
 
     return (
         <>
-            <AuthNavbar />
+
+            <AuthNavbar
+                key={"profile"}
+                username={stateProfile.username}
+                avatarUrl={stateProfile.avatar}
+            />
             <div className="home-background">
 
                 <div style={{ display: "flex", marginTop: "130px", justifyContent: "space-between", width: "90%" }}>
@@ -104,7 +109,7 @@ const Home = () => {
 
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "20vh" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
 
 
                     {stateSounds.soundsInfo.map((sound: any) => (
@@ -116,7 +121,7 @@ const Home = () => {
                             url={sound.url}
                         />
                     ))}
-                    <Pagination>{pages}</Pagination>
+                   
 
 
                     {/* <Pagination>
@@ -131,7 +136,7 @@ const Home = () => {
                     {/* <img style={{ height: "200px", width: "400px" }} src='https://i.yapx.ru/So2wJ.png' alt='pixlr-bg-result.png' />
                     <div style={{ color: "white", fontSize: "20px", marginTop: "10px" }} >You have no entries :(</div> */}
                 </div>
-
+                <Pagination className="pagination">{pages}</Pagination>
             </div >
         </>
     );

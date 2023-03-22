@@ -1,5 +1,4 @@
 import {
-  AuthenticationResponse,
   GetLinkToResetPasswordBody,
   LoginBody,
   RegistrationBody,
@@ -19,9 +18,6 @@ export enum AuthActions {
   REGISTRATION = "REGISTRATION",
   UPDATE_TOKENS = "UPDATE_TOKENS",
   GET_LINK_TO_RESET_PASSWORD = "GET_LINK_TO_RESET_PASSWORD",
-  SUCCESS_LOGIN = "SUCCESS_LOGIN",
-  SUCCESS_REGISTRATION = "SUCCESS_REGISTRATION",
-  SUCCESS_UPDATE_TOKENS = "SUCCESS_UPDATE_TOKENS",
   SUCCESS_GET_LINK_TO_RESET_PASSWORD = "SUCCESS_GET_LINK_TO_RESET_PASSWORD",
 }
 
@@ -75,27 +71,7 @@ export interface GetLinkToResetPassword {
 
 //ResponseSuccess
 
-export interface LoginSuccess {
-  type: AuthActions.SUCCESS_LOGIN;
-  payload: AuthenticationResponse;
-}
-
-export interface RegistrationSuccess {
-  type: AuthActions.SUCCESS_REGISTRATION;
-  payload: AuthenticationResponse;
-}
-
-export interface UpdateTokensSuccess {
-  type: AuthActions.SUCCESS_UPDATE_TOKENS;
-  payload: AuthenticationResponse;
-}
-
 export interface GetLinkToResetPasswordSuccess {
   type: AuthActions.SUCCESS_GET_LINK_TO_RESET_PASSWORD;
   payload: object;
 }
-
-export type AuthStateTypes =
-  | LoginSuccess
-  | RegistrationSuccess
-  | UpdateTokensSuccess;

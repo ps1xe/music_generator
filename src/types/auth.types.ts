@@ -13,7 +13,7 @@ export interface GetLinkToResetPasswordBody {
   email: string;
 }
 
-export interface AuthenticationResponse {
+export interface Profile {
   email: string;
   username: string;
   avatar: string;

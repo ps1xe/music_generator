@@ -1,6 +1,6 @@
 import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import AuthService from "../../services/auth.service";
-import { AuthenticationResponse } from "../../types/auth.types";
+import { Profile } from "../../types/auth.types";
 import {
   AuthActions,
   GetLinkToResetPassword,
@@ -11,13 +11,10 @@ import {
   UpdateTokens,
 } from "../actions/auth.actions";
 
-function* loginSaga(
-  action: Login
-): Generator<Effect, void, AuthenticationResponse> {
+function* loginSaga(action: Login): Generator<Effect, void, Profile> {
   try {
     const loginBody = action.payload;
-    const userInfo = yield call(AuthService.login, loginBody);
-    yield put(requestAuthSuccess(AuthActions.SUCCESS_LOGIN, userInfo));
+    yield call(AuthService.login, loginBody);
   } catch (exception) {
     yield put(requestAuthFailed());
   }
@@ -25,11 +22,10 @@ function* loginSaga(
 
 function* registrationSaga(
   action: Registration
-): Generator<Effect, void, AuthenticationResponse> {
+): Generator<Effect, void, Profile> {
   try {
     const registrationBody = action.payload;
-    const userInfo = yield call(AuthService.registration, registrationBody);
-    yield put(requestAuthSuccess(AuthActions.SUCCESS_REGISTRATION, userInfo));
+    yield call(AuthService.registration, registrationBody);
   } catch (exception) {
     yield put(requestAuthFailed());
   }
@@ -37,10 +33,9 @@ function* registrationSaga(
 
 function* updateTokensSaga(
   action: UpdateTokens
-): Generator<Effect, void, AuthenticationResponse> {
+): Generator<Effect, void, Profile> {
   try {
-    const userInfo = yield call(AuthService.updateTokens);
-    yield put(requestAuthSuccess(AuthActions.SUCCESS_UPDATE_TOKENS, userInfo));
+    yield call(AuthService.updateTokens);
   } catch (exception) {
     yield put(requestAuthFailed());
   }

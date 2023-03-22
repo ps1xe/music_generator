@@ -5,6 +5,7 @@
     width: 100vw;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .menu-generate {
@@ -76,4 +77,8 @@
 
 .audio-player {
     display: flex;
+}
+
+.pagination {
+    margin-bottom: 5%;
 }

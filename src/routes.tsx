@@ -5,6 +5,8 @@ import Main from "./Components/Main/Main"
 import Registration from "./Components/Auth/Registration/Registration"
 import { ConstsRoutes } from "./utils/consts"
 import Home from "./Components/Home/Home"
+import { ChangePassword } from "./Components/Settings/ChangePassword/ChangePassword"
+import { ChangingAvatar } from "./Components/Settings/ChangingAvatar/ChangingAvatar"
 
 
 export const authRoutes = [
@@ -12,6 +14,14 @@ export const authRoutes = [
     {
         path: ConstsRoutes.HOME_ROUTE,
         Component: Home
+    },
+    {
+        path: ConstsRoutes.CHANGE_PASSWORD_ROUTE,
+        Component: ChangePassword
+    },
+    {
+        path: ConstsRoutes.CHANGING_AVATAR_ROUTE,
+        Component: ChangingAvatar
     }
 
 ]

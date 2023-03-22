@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import $api from "../http/index";
 import {
-  AuthenticationResponse,
+  Profile,
   GetLinkToResetPasswordBody,
   LoginBody,
   RegistrationBody,
@@ -10,19 +10,19 @@ import {
 export default class AuthService {
   static async login(
     loginBody: LoginBody
-  ): Promise<AxiosResponse<AuthenticationResponse>> {
+  ): Promise<AxiosResponse<Profile>> {
     return (await $api.put("http://localhost:4000/auth/login", loginBody)).data;
   }
 
   static async registration(
     registationBody: RegistrationBody
-  ): Promise<AxiosResponse<AuthenticationResponse>> {
+  ): Promise<AxiosResponse<Profile>> {
     return (
       await $api.post("http://localhost:4000/auth/register", registationBody)
     ).data;
   }
 
-  static async updateTokens(): Promise<AxiosResponse<AuthenticationResponse>> {
+  static async updateTokens(): Promise<AxiosResponse<Profile>> {
     return (await $api.post("http://localhost:4000/auth/updateTokens")).data;
   }
 

@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http/index";
+import { Profile } from "../types/auth.types.js";
 import {
   ChangePasswordBody,
   ChangingAvatarResponse,
@@ -20,5 +21,9 @@ export default class UsersService {
     return (
       await $api.post("http://localhost:4000/users/changePassword", passwords)
     ).data;
+  }
+
+  static async getProfile(): Promise<AxiosResponse<Profile>> {
+    return (await $api.get("http://localhost:4000/users/getProfile")).data;
   }
 }
