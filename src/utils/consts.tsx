@@ -7,5 +7,6 @@ export enum ConstsRoutes {
     REGISTRATION_ROUTE = '/reg',
     SETTINGS_ROUTE = '/settings',
     CHANGING_AVATAR_ROUTE = '/changing-avatar',
-    CHANGE_PASSWORD_ROUTE = '/change-password'
+    CHANGE_PASSWORD_ROUTE = '/change-password',
+    CHANGE_NICKNAME_ROUTE = '/change-nickname'
 }

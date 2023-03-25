@@ -2,6 +2,7 @@ import { call, Effect, put, takeEvery } from "redux-saga/effects";
 import UsersService from "../../services/user.service";
 import { ChangingAvatarResponse, Profile } from "../../types/users.types";
 import {
+  ChangeNickname,
   ChangePassword,
   ChangingAvatar,
   GetProfile,
@@ -40,8 +41,18 @@ function* getProfileSaga(action: GetProfile): Generator<Effect, void, Profile> {
   }
 }
 
+function* changeNicknameSaga(action: ChangeNickname): Generator<Effect, void> {
+  try {
+    const nickname = action.payload;
+    yield call(UsersService.changeNickname, nickname);
+  } catch (exception) {
+    yield put(requestUserFailed());
+  }
+}
+
 export function* watcherUserSaga(): Generator<Effect, void> {
   yield takeEvery(UserActions.CHANGING_AVATAR, changingAvatarSaga);
   yield takeEvery(UserActions.CHANGE_PASSWORD, changePasswordSaga);
   yield takeEvery(UserActions.GET_PROFILE, getProfileSaga);
+  yield takeEvery(UserActions.CHANGE_NICKNAME, changeNicknameSaga);
 }
