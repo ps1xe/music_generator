@@ -13,7 +13,7 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
 
         <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#161B22" }}>
             <Container fluid>
-                {/* <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand> */}
+                {/* <Navbar.Brand href="#"><img alt="" src="../../../public/logo.png"></img></Navbar.Brand> */}
                 <Navbar.Toggle aria-controls='offcanvasNavbar-expand-sm' />
                 <Navbar.Offcanvas style={{ width: "100%", height: "100%", background: "#161B22", color: "#fefefe" }}
                     id='offcanvasNavbar-expand-sm'

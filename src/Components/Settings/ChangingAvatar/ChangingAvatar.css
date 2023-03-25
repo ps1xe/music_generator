@@ -1,0 +1,27 @@
+body {
+    background: rgb(46, 46, 46);
+}
+
+.crop-image-block {
+    width: 100%;
+    display: flex;
+    background: rgba(0, 0, 0, 0.925);
+    margin: 0px;
+    max-height: 60vh;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.current-avatar-form {
+    margin-left: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.save-new-avatar-block {
+    display: flex;
+    margin-top: 2%;
+    align-items: center;
+    justify-content: end;
+}
