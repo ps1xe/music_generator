@@ -109,10 +109,10 @@ const Home = () => {
 
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
 
 
-                    {stateSounds.soundsInfo.map((sound: any) => (
+                    {stateSounds.soundsInfo !== undefined ? stateSounds.soundsInfo.map((sound: any) => (
                         <SoundPlayer
                             key={"sound" + String(k++)}
                             name={sound.name}
@@ -120,8 +120,8 @@ const Home = () => {
                             length={sound.length}
                             url={sound.url}
                         />
-                    ))}
-                   
+                    )) : []}
+
 
 
                     {/* <Pagination>
