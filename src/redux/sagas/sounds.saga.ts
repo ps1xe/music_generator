@@ -15,7 +15,7 @@ function* getSoundsSaga(action: GetSounds): Generator<Effect, void, Sounds> {
     const sounds = yield call(SoundService.getSounds, page);
     // console.log(sounds)
     yield put(requestSoundSuccess(SoundActions.SUCCESS_GET_SOUNDS, sounds));
-  } catch (exception) {
+  } catch (error) {
     yield put(requestSoundFailed());
   }
 }
@@ -34,7 +34,7 @@ function* generateSoundSaga(
     yield put(
       requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND, generatedSound)
     );
-  } catch (exception) {
+  } catch (error) {
     yield put(requestSoundFailed());
   }
 }

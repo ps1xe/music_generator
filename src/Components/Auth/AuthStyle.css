@@ -55,3 +55,8 @@
         width: 80%;
     }
 }
+
+.error-auth {
+    color: red;
+    height: 20px;
+}

@@ -18,7 +18,7 @@ function* changingAvatarSaga(
     const formData = action.payload;
     const avatar = yield call(UsersService.changingAvatar, formData);
     yield put(requestUserSuccess(UserActions.SUCCESS_CHANGING_AVATAR, avatar));
-  } catch (exception) {
+  } catch (error) {
     yield put(requestUserFailed());
   }
 }
@@ -27,7 +27,7 @@ function* changePasswordSaga(action: ChangePassword): Generator<Effect, void> {
   try {
     const passwords = action.payload;
     yield call(UsersService.changePassword, passwords);
-  } catch (exception) {
+  } catch (error) {
     yield put(requestUserFailed());
   }
 }
@@ -36,7 +36,7 @@ function* getProfileSaga(action: GetProfile): Generator<Effect, void, Profile> {
   try {
     const profile = yield call(UsersService.getProfile);
     yield put(requestUserSuccess(UserActions.SUCCESS_GET_PROFILE, profile));
-  } catch (exception) {
+  } catch (error) {
     yield put(requestUserFailed());
   }
 }
@@ -45,7 +45,7 @@ function* changeNicknameSaga(action: ChangeNickname): Generator<Effect, void> {
   try {
     const nickname = action.payload;
     yield call(UsersService.changeNickname, nickname);
-  } catch (exception) {
+  } catch (error) {
     yield put(requestUserFailed());
   }
 }

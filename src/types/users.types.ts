@@ -13,6 +13,7 @@ export interface ProfileState {
   avatar: string;
 }
 
+
 export interface Profile {
   email: string;
   username: string;

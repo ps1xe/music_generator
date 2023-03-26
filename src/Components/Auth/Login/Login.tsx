@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../../../redux/actions/auth.actions";
+import { login, zeroingError } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css"
 
 const Login = () => {
@@ -13,14 +13,17 @@ const Login = () => {
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        dispatch(zeroingError())
     }
 
     const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
+        dispatch(zeroingError())
     }
 
     const checkPasswordActive = (event: ChangeEvent<HTMLInputElement>) => {
         setCheckPassword(!checkPassword);
+        dispatch(zeroingError())
     }
 
     const handleSubmit = (event: MouseEvent<HTMLElement>) => {
@@ -31,11 +34,12 @@ const Login = () => {
 
         dispatch(login({ email, password }))
 
-
         setEmail('');
         setPassword('');
         event.preventDefault();
     }
+
+    const stateError = useSelector((state: any) => state.authError);
 
     return (
         <>
@@ -74,6 +78,7 @@ const Login = () => {
                         <Link to="/reg">Create an account.</Link>
                     </div>
                 </div>
+                {stateError !== '' ? <div className="error-auth">{stateError}</div> : <div className="error-auth"></div>}
             </div>
 
         </>

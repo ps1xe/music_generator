@@ -8,9 +8,7 @@ import {
 } from "../types/auth.types.js";
 
 export default class AuthService {
-  static async login(
-    loginBody: LoginBody
-  ): Promise<AxiosResponse<Profile>> {
+  static async login(loginBody: LoginBody): Promise<AxiosResponse<Profile>> {
     return (await $api.put("http://localhost:4000/auth/login", loginBody)).data;
   }
 

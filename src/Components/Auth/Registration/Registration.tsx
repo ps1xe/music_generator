@@ -1,8 +1,7 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
-import { Alert } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { registration } from "../../../redux/actions/auth.actions";
+import { registration, zeroingError } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css";
 
 const Registration = () => {
@@ -16,20 +15,24 @@ const Registration = () => {
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        dispatch(zeroingError())
     }
 
     const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
         event.target.value !== repetePassword ? setPasswordComparison(false) : setPasswordComparison(true);
+        dispatch(zeroingError())
     }
 
     const usernameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value)
+        dispatch(zeroingError())
     }
 
     const repetePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setRepetePassword(event.target.value)
         event.target.value !== password ? setPasswordComparison(false) : setPasswordComparison(true);
+        dispatch(zeroingError())
     }
 
     const handleSubmit = (event: MouseEvent<HTMLElement>) => {
@@ -37,7 +40,7 @@ const Registration = () => {
             event.preventDefault();
             return;
         }
-        if (!passwordComparison) { 
+        if (!passwordComparison) {
             event.preventDefault();
             return;
         }
@@ -47,7 +50,10 @@ const Registration = () => {
         setEmail('');
         setPassword('');
         setUsername('');
+        event.preventDefault();
     }
+
+    const stateError = useSelector((state: any) => state.authError);
 
 
     return (
@@ -91,7 +97,10 @@ const Registration = () => {
                         <Link to="/login">Sign In</Link>
                     </div>
                 </div>
-                {passwordComparison ? <div style={{ height: "6%", width: "25%" }}></div> : <Alert className="alert-block" key={'danger'} variant={'danger'}>Password mismatch!!!</Alert>}
+                {(stateError === '' && passwordComparison) && (<div className="error-auth"></div>)}
+                {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
+                {(stateError !== '' && passwordComparison) ? (<div className="error-auth">{stateError}</div>) : <div></div>}
+
             </div>
 
         </>

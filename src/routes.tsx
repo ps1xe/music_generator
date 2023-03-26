@@ -8,6 +8,7 @@ import Home from "./Components/Home/Home"
 import { ChangePassword } from "./Components/Settings/ChangePassword/ChangePassword"
 import { ChangingAvatar } from "./Components/Settings/ChangingAvatar/ChangingAvatar"
 import { ChangeNickname } from "./Components/Settings/ChangeNickname/ChangeNickname"
+import { GetLinkToResetPassword } from "./Components/Auth/GetLinkToResetPassword/GetLinkToResetPassword"
 
 
 export const authRoutes = [
@@ -15,6 +16,10 @@ export const authRoutes = [
     {
         path: ConstsRoutes.HOME_ROUTE,
         Component: Home
+    },
+    {
+        path: ConstsRoutes.GET_LINK_TO_RESET_PASSWORD,
+        Component: GetLinkToResetPassword
     },
     {
         path: ConstsRoutes.CHANGE_NICKNAME_ROUTE,

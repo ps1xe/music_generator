@@ -9,22 +9,30 @@ export const requestAuthSuccess = (type: AuthActions, payload?: any) => ({
   payload,
 });
 
-export const requestAuthFailed = () => ({
-  type: "REQUEST_AUTH_FAILED",
-});
-
 export enum AuthActions {
   LOGIN = "LOGIN",
   REGISTRATION = "REGISTRATION",
   UPDATE_TOKENS = "UPDATE_TOKENS",
   GET_LINK_TO_RESET_PASSWORD = "GET_LINK_TO_RESET_PASSWORD",
-  SUCCESS_GET_LINK_TO_RESET_PASSWORD = "SUCCESS_GET_LINK_TO_RESET_PASSWORD",
+  REQUEST_AUTH_FAILED = "REQUEST_AUTH_FAILED",
+  ZEROING_ERROR = "ZEROING ERROR",
 }
+
+export const requestAuthFailed = (payload: string) => ({
+  type: AuthActions.REQUEST_AUTH_FAILED,
+  payload,
+});
 
 export const login = (payload: LoginBody) => {
   return {
     type: AuthActions.LOGIN,
     payload,
+  };
+};
+
+export const zeroingError = () => {
+  return {
+    type: AuthActions.ZEROING_ERROR,
   };
 };
 
@@ -55,6 +63,11 @@ export interface Login {
   payload: LoginBody;
 }
 
+export interface RequestAuthFailed {
+  type: AuthActions.REQUEST_AUTH_FAILED;
+  payload: string;
+}
+
 export interface Registration {
   type: AuthActions.REGISTRATION;
   payload: RegistrationBody;
@@ -67,11 +80,4 @@ export interface UpdateTokens {
 export interface GetLinkToResetPassword {
   type: AuthActions.GET_LINK_TO_RESET_PASSWORD;
   payload: GetLinkToResetPasswordBody;
-}
-
-//ResponseSuccess
-
-export interface GetLinkToResetPasswordSuccess {
-  type: AuthActions.SUCCESS_GET_LINK_TO_RESET_PASSWORD;
-  payload: object;
 }

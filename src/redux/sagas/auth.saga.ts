@@ -7,7 +7,6 @@ import {
   Login,
   Registration,
   requestAuthFailed,
-  requestAuthSuccess,
   UpdateTokens,
 } from "../actions/auth.actions";
 
@@ -15,8 +14,9 @@ function* loginSaga(action: Login): Generator<Effect, void, Profile> {
   try {
     const loginBody = action.payload;
     yield call(AuthService.login, loginBody);
-  } catch (exception) {
-    yield put(requestAuthFailed());
+  } catch (error: any) {
+    const errorMassage = error.response.data.message;
+    yield put(requestAuthFailed(errorMassage));
   }
 }
 
@@ -26,8 +26,9 @@ function* registrationSaga(
   try {
     const registrationBody = action.payload;
     yield call(AuthService.registration, registrationBody);
-  } catch (exception) {
-    yield put(requestAuthFailed());
+  } catch (error: any) {
+    const errorMassage = error.response.data.message;
+    yield put(requestAuthFailed(errorMassage));
   }
 }
 
@@ -36,8 +37,9 @@ function* updateTokensSaga(
 ): Generator<Effect, void, Profile> {
   try {
     yield call(AuthService.updateTokens);
-  } catch (exception) {
-    yield put(requestAuthFailed());
+  } catch (error: any) {
+    const errorMassage = error.response.data.message;
+    yield put(requestAuthFailed(errorMassage));
   }
 }
 
@@ -46,18 +48,10 @@ function* getLinkToResetPasswordSaga(
 ): Generator<Effect, void> {
   try {
     const requestBody = action.payload;
-    const userInfo = yield call(
-      AuthService.getLinkToResetPassword,
-      requestBody
-    );
-    yield put(
-      requestAuthSuccess(
-        AuthActions.SUCCESS_GET_LINK_TO_RESET_PASSWORD,
-        userInfo
-      )
-    );
-  } catch (exception) {
-    yield put(requestAuthFailed());
+    yield call(AuthService.getLinkToResetPassword, requestBody);
+  } catch (error: any) {
+    const errorMassage = error.response.data.message;
+    yield put(requestAuthFailed(errorMassage));
   }
 }
 
