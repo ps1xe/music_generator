@@ -1,11 +1,12 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login, zeroingError } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css"
 
 const Login = () => {
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState(false);
     const dispatch = useDispatch();
@@ -26,20 +27,27 @@ const Login = () => {
         dispatch(zeroingError())
     }
 
-    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+    const handleSubmit = async (event: MouseEvent<HTMLElement>) => {
         if (!email.trim() || !password.trim()) {
             event.preventDefault();
             return;
         }
 
-        dispatch(login({ email, password }))
-
+        await dispatch(login({ email, password }));
         setEmail('');
         setPassword('');
         event.preventDefault();
     }
 
-    const stateError = useSelector((state: any) => state.authError);
+
+
+    const stateAuth = useSelector((state: any) => state.authError);
+
+    useEffect(() => {
+        if (stateAuth === 'Complete') {
+            navigate('/home');
+        }
+    }, [stateAuth]);
 
     return (
         <>
@@ -74,11 +82,12 @@ const Login = () => {
                         </div>
                         <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign In</button>
                     </form>
+
                     <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>New user?⠀
                         <Link to="/reg">Create an account.</Link>
                     </div>
                 </div>
-                {stateError !== '' ? <div className="error-auth">{stateError}</div> : <div className="error-auth"></div>}
+                {stateAuth !== '' ? <div className="error-auth">{stateAuth}</div> : <div className="error-auth"></div>}
             </div>
 
         </>

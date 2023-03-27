@@ -19,7 +19,10 @@ export default class UsersService {
     } catch (error) {
       await AuthService.updateTokens();
       return (
-        await await $api.post("http://localhost:4000/users/changingAvatar", formData)
+        await await $api.post(
+          "http://localhost:4000/users/changingAvatar",
+          formData
+        )
       ).data;
     }
   }
@@ -31,8 +34,12 @@ export default class UsersService {
       return (
         await $api.post("http://localhost:4000/users/changePassword", passwords)
       ).data;
-    } catch (error) {
-      await AuthService.updateTokens();
+    } catch (error: any) {
+      if (
+        error.response.data.message === "Token is invalid" ||
+        error.response.data.message === "User not found"
+      )
+        await AuthService.updateTokens();
       return (
         await $api.post("http://localhost:4000/users/changePassword", passwords)
       ).data;

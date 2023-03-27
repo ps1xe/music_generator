@@ -6,6 +6,7 @@ import { generateSound, getSounds } from "../../redux/actions/sound.actions";
 import SoundPlayer from "./SoundPlayer";
 import { Pagination } from "react-bootstrap";
 import { getProfile } from "../../redux/actions/users.actions";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     let pages = []
@@ -16,6 +17,7 @@ const Home = () => {
     const [placeholderSoundName, setPlaceholderSoundName] = useState('name');
     const [formClass, setformClass] = useState('menu-generate');
     const [nameSoundClass, setNameSoundClass] = useState('name-music');
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const soundNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +35,7 @@ const Home = () => {
         setGenre(event.target.value);
     }
 
-    const handleSubmit = (event: MouseEvent<HTMLElement>) => {
+    const handleSubmit = async (event: MouseEvent<HTMLElement>) => {
         event.preventDefault();
         if (soundName === '') {
             setformClass("menu-generate-war");
@@ -42,7 +44,7 @@ const Home = () => {
             return;
         }
         else {
-            dispatch(generateSound({ name: soundName, genre: genre, length: Number(soundTime) }));
+            await dispatch(generateSound({ name: soundName, genre: genre, length: Number(soundTime) }));
             setPlaceholderSoundName("name")
             setformClass("menu-generate");
             setNameSoundClass("name-music")
@@ -55,6 +57,15 @@ const Home = () => {
     const onChangePage = (numPage: number) => {
         dispatch(getSounds(numPage));
     }
+
+
+
+    const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
+    useEffect(() => {
+        dispatch(getProfile());
+        if (!isAuthenticated) navigate('/login')
+    }, [isAuthenticated]);
+
 
     useEffect(() => { dispatch(getSounds(1)) }, [dispatch]);
     const stateSounds = useSelector((state: any) => state.sounds)

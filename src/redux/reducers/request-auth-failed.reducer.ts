@@ -8,9 +8,7 @@ export const authFailedReducer = (
   action: RequestAuthFailed
 ) => {
   if (action.type === AuthActions.REQUEST_AUTH_FAILED) {
-    if (action.payload) {
-      return action.payload;
-    }
+    return action.payload;
   } else if (action.type === AuthActions.ZEROING_ERROR) {
     return "";
   }

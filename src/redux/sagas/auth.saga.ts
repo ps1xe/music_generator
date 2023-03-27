@@ -14,6 +14,7 @@ function* loginSaga(action: Login): Generator<Effect, void, Profile> {
   try {
     const loginBody = action.payload;
     yield call(AuthService.login, loginBody);
+    yield put(requestAuthFailed("Complete"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
     yield put(requestAuthFailed(errorMassage));
@@ -26,6 +27,7 @@ function* registrationSaga(
   try {
     const registrationBody = action.payload;
     yield call(AuthService.registration, registrationBody);
+    yield put(requestAuthFailed("Complete"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
     yield put(requestAuthFailed(errorMassage));

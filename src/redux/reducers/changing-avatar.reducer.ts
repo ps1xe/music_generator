@@ -1,16 +1,18 @@
-import { ChangingAvatarResponse } from "../../types/users.types";
-import { ChangingAvatarSuccess } from "../actions/users.actions";
+import {
+  RequestChangePasswordFailed,
+  UserActions,
+} from "../actions/users.actions";
 
-export const initialState = {
-  url: "",
-} as ChangingAvatarResponse;
+const initialState = "";
 
-export const changingAvatarReducer = (
-  state: ChangingAvatarResponse = initialState,
-  action: ChangingAvatarSuccess
+export const requestChangePasswordFailedReducer = (
+  state: string = initialState,
+  action: RequestChangePasswordFailed
 ) => {
-  if (action.payload) {
+  if (action.type === UserActions.REQUEST_CHANGE_PASSWORD_FAILED) {
     return action.payload;
+  } else if (action.type === UserActions.ZEROING_ERROR) {
+    return "";
   }
   return state;
 };

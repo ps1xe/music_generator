@@ -6,6 +6,7 @@ import {
   ChangePassword,
   ChangingAvatar,
   GetProfile,
+  requestChangePassword,
   requestUserFailed,
   requestUserSuccess,
   UserActions,
@@ -27,8 +28,10 @@ function* changePasswordSaga(action: ChangePassword): Generator<Effect, void> {
   try {
     const passwords = action.payload;
     yield call(UsersService.changePassword, passwords);
-  } catch (error) {
-    yield put(requestUserFailed());
+    yield put(requestChangePassword("Complete"));
+  } catch (error: any) {
+    const errorMassage = error.response.data.message;
+    yield put(requestChangePassword(errorMassage));
   }
 }
 

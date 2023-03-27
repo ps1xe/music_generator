@@ -5,10 +5,8 @@ import Main from "./Components/Main/Main"
 import Registration from "./Components/Auth/Registration/Registration"
 import { ConstsRoutes } from "./utils/consts"
 import Home from "./Components/Home/Home"
-import { ChangePassword } from "./Components/Settings/ChangePassword/ChangePassword"
-import { ChangingAvatar } from "./Components/Settings/ChangingAvatar/ChangingAvatar"
-import { ChangeNickname } from "./Components/Settings/ChangeNickname/ChangeNickname"
 import { GetLinkToResetPassword } from "./Components/Auth/GetLinkToResetPassword/GetLinkToResetPassword"
+import { Settings } from "./Components/Settings/Settings"
 
 
 export const authRoutes = [
@@ -22,17 +20,10 @@ export const authRoutes = [
         Component: GetLinkToResetPassword
     },
     {
-        path: ConstsRoutes.CHANGE_NICKNAME_ROUTE,
-        Component: ChangeNickname
-    },
-    {
-        path: ConstsRoutes.CHANGE_PASSWORD_ROUTE,
-        Component: ChangePassword
-    },
-    {
-        path: ConstsRoutes.CHANGING_AVATAR_ROUTE,
-        Component: ChangingAvatar
+        path: ConstsRoutes.SETTINGS_ROUTE,
+        Component: Settings
     }
+
 
 ]
 

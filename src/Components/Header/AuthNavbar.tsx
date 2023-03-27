@@ -40,8 +40,7 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
                                 <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>Signed in as {username}</div>
                                 <NavDropdown.Divider />
 
-                                <NavDropdown.Item className="dropdown-text" href="/profile">Your profile</NavDropdown.Item>
-                                <NavDropdown.Item className="dropdown-text" href="/settings">Settings</NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/settings">Your profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item className="dropdown-text" href="/main">Sign Out</NavDropdown.Item>
                             </NavDropdown>

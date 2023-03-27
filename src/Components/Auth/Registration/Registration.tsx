@@ -1,6 +1,6 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registration, zeroingError } from "../../../redux/actions/auth.actions";
 import "../AuthStyle.css";
 
@@ -11,6 +11,7 @@ const Registration = () => {
     const [username, setUsername] = useState('');
     const [repetePassword, setRepetePassword] = useState('');
     const [passwordComparison, setPasswordComparison] = useState(true);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +54,14 @@ const Registration = () => {
         event.preventDefault();
     }
 
-    const stateError = useSelector((state: any) => state.authError);
+    const stateAuth = useSelector((state: any) => state.authError);
 
+
+    useEffect(() => {
+        if (stateAuth === 'complete') {
+            navigate('/home');
+        }
+    }, [stateAuth]);
 
     return (
         <>
@@ -97,9 +104,9 @@ const Registration = () => {
                         <Link to="/login">Sign In</Link>
                     </div>
                 </div>
-                {(stateError === '' && passwordComparison) && (<div className="error-auth"></div>)}
+                {(stateAuth === '' && passwordComparison) && (<div className="error-auth"></div>)}
                 {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
-                {(stateError !== '' && passwordComparison) ? (<div className="error-auth">{stateError}</div>) : <div></div>}
+                {(stateAuth !== '' && passwordComparison) ? (<div className="error-auth">{stateAuth}</div>) : <div></div>}
 
             </div>
 
