@@ -11,11 +11,41 @@ const Registration = () => {
     const [username, setUsername] = useState('');
     const [repetePassword, setRepetePassword] = useState('');
     const [passwordComparison, setPasswordComparison] = useState(true);
+    const [isEmail, setIsEmail] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
+
+    const checkPasswordStrength = (password: string) => {
+        if (password.length < 8) {
+            return { valid: false, message: "Пароль должен содержать минимум 8 символов" };
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return { valid: false, message: "Пароль должен содержать хотя бы одну букву в верхнем регистре" };
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return { valid: false, message: "Пароль должен содержать хотя бы одну букву в нижнем регистре" };
+        }
+
+        if (!/\d/.test(password)) {
+            return { valid: false, message: "Пароль должен содержать хотя бы одну цифру" };
+        }
+
+        if (!/\W|_/.test(password)) {
+            return { valid: false, message: "Пароль должен содержать хотя бы один специальный символ" };
+        }
+
+        return { valid: true, message: "Пароль соответствует требованиям сложности" };
+    }
+
+
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        setIsEmail(emailRegex.test(event.target.value));
         dispatch(zeroingError())
     }
 
@@ -58,7 +88,7 @@ const Registration = () => {
 
 
     useEffect(() => {
-        if (stateAuth === 'complete') {
+        if (stateAuth === 'Complete') {
             navigate('/home');
         }
     }, [stateAuth]);
@@ -104,9 +134,11 @@ const Registration = () => {
                         <Link to="/login">Sign In</Link>
                     </div>
                 </div>
-                {(stateAuth === '' && passwordComparison) && (<div className="error-auth"></div>)}
+                {(stateAuth === '' && passwordComparison) && (<div></div>)}
+                {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div></div>}
                 {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
-                {(stateAuth !== '' && passwordComparison) ? (<div className="error-auth">{stateAuth}</div>) : <div></div>}
+                {(stateAuth !== '' && passwordComparison && isEmail) ? (<div className="error-auth">{stateAuth}</div>) : <div></div>}
+                {!checkPasswordStrength(password).valid ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div></div>}
 
             </div>
 

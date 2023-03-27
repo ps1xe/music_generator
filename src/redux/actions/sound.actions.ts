@@ -13,7 +13,8 @@ export enum SoundActions {
   GET_SOUNDS = "GET_SOUNDS",
   GENERATE_SOUND = "GENERATE_SOUNDS",
   SUCCESS_GET_SOUNDS = "SUCCESS_GET_SOUNDS",
-  SUCCESS_GENERATE_SOUND = "SUCCESS_GENERATE_SOUND",
+  SUCCESS_GENERATE_SOUND_LOADING = "SUCCESS_GENERATE_SOUND_LOADING",
+  SUCCESS_GENERATE_SOUND_AFTER_WAITING = "SUCCESS_GENERATE_SOUND_AFTER_WAITING",
 }
 
 export const getSounds = (payload: number) => {
@@ -49,7 +50,14 @@ export interface GetSoundsSuccess {
   payload: Sounds;
 }
 
-export interface GenerateSoundSuccess {
-  type: SoundActions.SUCCESS_GENERATE_SOUND;
+export interface GenerateSoundSuccessLoading {
+  type: SoundActions.SUCCESS_GENERATE_SOUND_LOADING;
   payload: GenerateBody;
 }
+
+export interface GenerateSoundSuccessAfterWaiting {
+  type: SoundActions.SUCCESS_GENERATE_SOUND_AFTER_WAITING;
+}
+
+
+export type GenerateSoundSuccess = GenerateSoundSuccessLoading |GenerateSoundSuccessAfterWaiting 

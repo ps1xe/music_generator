@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getProfile } from "../../redux/actions/users.actions";
 import { ChangeNickname } from "./ChangeNickname/ChangeNickname";
 import { ChangePassword } from "./ChangePassword/ChangePassword";
 import { ChangingAvatar } from "./ChangingAvatar/ChangingAvatar";
@@ -9,12 +8,13 @@ import { ChangingAvatar } from "./ChangingAvatar/ChangingAvatar";
 export const Settings = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
-    useEffect(() => {
-        dispatch(getProfile());
-        if (!isAuthenticated) navigate('/login')
+
+    useMemo(() => {
+        if (isAuthenticated === 'Access error') {
+            navigate('/login')
+        }
     }, [isAuthenticated]);
 
     return (

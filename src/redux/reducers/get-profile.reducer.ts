@@ -15,9 +15,7 @@ export const getProfileReducer = (
   action: GetProfileSuccess
 ) => {
   if (action.type === UserActions.SUCCESS_GET_PROFILE) {
-    if (action.payload) {
       return action.payload;
-    }
   }
   return state;
 };

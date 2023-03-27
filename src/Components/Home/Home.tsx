@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
+import { ChangeEvent, useState, MouseEvent, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthNavbar from "../Header/AuthNavbar";
 import "./Home.css"
@@ -7,6 +7,7 @@ import SoundPlayer from "./SoundPlayer";
 import { Pagination } from "react-bootstrap";
 import { getProfile } from "../../redux/actions/users.actions";
 import { useNavigate } from "react-router-dom";
+import SoundPlayerLoading from "./SoundPlayerLoading";
 
 const Home = () => {
     let pages = []
@@ -58,19 +59,19 @@ const Home = () => {
         dispatch(getSounds(numPage));
     }
 
-
-
+    const stateSounds = useSelector((state: any) => state.sounds)
+    const stateProfile = useSelector((state: any) => state.profile)
+    const stateListLoading = useSelector((state: any) => state.listGeneratedNow);
     const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
-    useEffect(() => {
-        dispatch(getProfile());
-        if (!isAuthenticated) navigate('/login')
+    useEffect(() => { dispatch(getProfile()) }, [dispatch]);
+    useEffect(() => { dispatch(getSounds(1)) }, [stateListLoading]);
+    useMemo(() => {
+        if (isAuthenticated === 'Access error') {
+            navigate('/login')
+        }
     }, [isAuthenticated]);
 
 
-    useEffect(() => { dispatch(getSounds(1)) }, [dispatch]);
-    const stateSounds = useSelector((state: any) => state.sounds)
-    useEffect(() => { dispatch(getProfile()) }, [dispatch])
-    const stateProfile = useSelector((state: any) => state.profile)
 
 
     if (stateSounds.meta.hasPreviousPage) pages.push(<Pagination.Prev key="prev" onClick={() => onChangePage(stateSounds.meta.page - 1)} />);
@@ -122,16 +123,24 @@ const Home = () => {
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
 
-
-                    {stateSounds.soundsInfo !== undefined ? stateSounds.soundsInfo.map((sound: any) => (
-                        <SoundPlayer
+                    {stateListLoading.map((sound: any) => (
+                        <SoundPlayerLoading
                             key={"sound" + String(k++)}
                             name={sound.name}
                             genre={sound.genre}
                             length={sound.length}
-                            url={sound.url}
                         />
-                    )) : []}
+                    ))}
+                    {
+                        stateSounds.soundsInfo !== undefined ? stateSounds.soundsInfo.map((sound: any) => (
+                            <SoundPlayer
+                                key={"sound" + String(k++)}
+                                name={sound.name}
+                                genre={sound.genre}
+                                length={sound.length}
+                                url={sound.url}
+                            />
+                        )) : []}
 
 
 

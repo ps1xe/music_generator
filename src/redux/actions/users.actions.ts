@@ -23,8 +23,9 @@ export enum UserActions {
   REQUEST_USER_FAILED = "REQUEST_USER_FAILED",
 }
 
-export const requestUserFailed = () => ({
+export const requestUserFailed = (payload: string) => ({
   type: UserActions.REQUEST_USER_FAILED,
+  payload,
 });
 
 export const changeNickname = (payload: ChangeNicknameBody) => {
@@ -95,6 +96,7 @@ export interface RequestChangePasswordFailed {
 
 export interface RequestUserFailed {
   type: UserActions.REQUEST_USER_FAILED;
+  payload: string;
 }
 
 //ResponseSuccess

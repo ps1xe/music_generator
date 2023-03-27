@@ -26,13 +26,16 @@ function* generateSoundSaga(
   try {
     const generationOptions = action.payload;
 
-    const generatedSound = yield call(
-      SoundService.generateSounds,
-      generationOptions
+    yield put(
+      requestSoundSuccess(
+        SoundActions.SUCCESS_GENERATE_SOUND_LOADING,
+        generationOptions
+      )
     );
 
+    yield call(SoundService.generateSounds, generationOptions);
     yield put(
-      requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND, generatedSound)
+      requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND_AFTER_WAITING)
     );
   } catch (error) {
     yield put(requestSoundFailed());

@@ -1,5 +1,14 @@
 export interface Sounds {
-  soundsInfo: string[];
+  soundsInfo:
+    | [
+        {
+          name: string;
+          genre: string;
+          length: number;
+          url: string;
+        }
+      ]
+    | [];
   meta: {
     page: number;
     take: number;

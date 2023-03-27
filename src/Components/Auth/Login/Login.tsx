@@ -9,21 +9,30 @@ const Login = () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState(false);
+    const [minLenPasswordSatisfied, setMinLenPasswordSatisfied] = useState(true);
+    const [isEmail, setIsEmail] = useState(true);
     const dispatch = useDispatch();
 
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        setIsEmail(emailRegex.test(event.target.value));
         dispatch(zeroingError())
     }
 
     const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
+        setMinLenPasswordSatisfied(event.target.value.length >= 8)
         dispatch(zeroingError())
     }
 
     const checkPasswordActive = (event: ChangeEvent<HTMLInputElement>) => {
         setCheckPassword(!checkPassword);
+        dispatch(zeroingError())
+    }
+
+    const swapToReg = (event: any) => {
         dispatch(zeroingError())
     }
 
@@ -39,6 +48,7 @@ const Login = () => {
         event.preventDefault();
     }
 
+    
 
 
     const stateAuth = useSelector((state: any) => state.authError);
@@ -84,10 +94,12 @@ const Login = () => {
                     </form>
 
                     <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>New user?⠀
-                        <Link to="/reg">Create an account.</Link>
+                        <Link onClick={swapToReg} to="/reg">Create an account.</Link>
                     </div>
                 </div>
-                {stateAuth !== '' ? <div className="error-auth">{stateAuth}</div> : <div className="error-auth"></div>}
+                {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div></div>}
+                {!minLenPasswordSatisfied && stateAuth === '' ? <div className="error-auth">Минимальная длина пароля 8</div> : <div></div>}
+                {stateAuth !== '' && isEmail ? <div className="error-auth">{stateAuth}</div> : <div></div>}
             </div>
 
         </>

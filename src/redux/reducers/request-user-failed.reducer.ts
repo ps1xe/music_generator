@@ -1,14 +1,14 @@
 import {} from "../../types/users.types";
 import { RequestUserFailed, UserActions } from "../actions/users.actions";
 
-const initialState = true;
+const initialState = "";
 
 export const requestUserFailedReducer = (
-  state: boolean = initialState,
+  state: string = initialState,
   action: RequestUserFailed
 ) => {
   if (action.type === UserActions.REQUEST_USER_FAILED) {
-    return false;
+    return action.payload;
   }
   return state;
 };

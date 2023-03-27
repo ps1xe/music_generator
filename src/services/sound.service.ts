@@ -8,16 +8,13 @@ export default class SoundService {
     try {
       return (
         await $api.get("http://localhost:4000/users/getSounds", {
-          withCredentials: true,
           params: { page: page, take: 8, order: "DESC" },
         })
       ).data;
     } catch (error) {
-      console.log(error);
       await AuthService.updateTokens();
       return (
         await $api.get("http://localhost:4000/users/getSounds", {
-          withCredentials: true,
           params: { page: page, take: 8, order: "DESC" },
         })
       ).data;
