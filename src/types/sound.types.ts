@@ -6,6 +6,7 @@ export interface Sounds {
           genre: string;
           length: number;
           url: string;
+          loaded: boolean;
         }
       ]
     | [];

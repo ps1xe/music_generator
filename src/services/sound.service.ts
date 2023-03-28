@@ -35,4 +35,21 @@ export default class SoundService {
       ).data;
     }
   }
+
+  static async deleteSounds(soundId: string): Promise<AxiosResponse<void>> {
+    try {
+      return (
+        await $api.delete(
+          "http://localhost:4000/sounds/deleteSound/" + soundId
+        )
+      ).data;
+    } catch (error) {
+      await AuthService.updateTokens();
+      return (
+        await $api.delete(
+          "http://localhost:4000/sounds/deleteSound/" + soundId
+        )
+      ).data;
+    }
+  }
 }

@@ -7,7 +7,6 @@ import SoundPlayer from "./SoundPlayer";
 import { Pagination } from "react-bootstrap";
 import { getProfile } from "../../redux/actions/users.actions";
 import { useNavigate } from "react-router-dom";
-import SoundPlayerLoading from "./SoundPlayerLoading";
 
 const Home = () => {
     let pages = []
@@ -46,6 +45,7 @@ const Home = () => {
         }
         else {
             await dispatch(generateSound({ name: soundName, genre: genre, length: Number(soundTime) }));
+            await dispatch(getSounds(1));
             setPlaceholderSoundName("name")
             setformClass("menu-generate");
             setNameSoundClass("name-music")
@@ -61,15 +61,19 @@ const Home = () => {
 
     const stateSounds = useSelector((state: any) => state.sounds)
     const stateProfile = useSelector((state: any) => state.profile)
-    const stateListLoading = useSelector((state: any) => state.listGeneratedNow);
+    const loadingSound = useSelector((state: any) => state.loadingSound);
     const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
+    console.log(loadingSound);
     useEffect(() => { dispatch(getProfile()) }, [dispatch]);
-    useEffect(() => { dispatch(getSounds(1)) }, [stateListLoading]);
+    useEffect(() => { dispatch(getSounds(1)) }, [loadingSound]);
+
     useMemo(() => {
         if (isAuthenticated === 'Access error') {
             navigate('/login')
         }
     }, [isAuthenticated]);
+
+
 
 
 
@@ -114,7 +118,7 @@ const Home = () => {
                             <option value="Rock">Rock</option>
                         </select>
 
-                        <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "60px" }} type="text" placeholder="00:00" />
+                        <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "60px" }} value={soundTime} type="text" placeholder="00:00" />
 
                     </form>
                     <button onClick={handleSubmit} style={{ marginLeft: "15px" }} type="button" className="btn btn-success">Generate</button>
@@ -123,22 +127,16 @@ const Home = () => {
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
 
-                    {stateListLoading.map((sound: any) => (
-                        <SoundPlayerLoading
-                            key={"sound" + String(k++)}
-                            name={sound.name}
-                            genre={sound.genre}
-                            length={sound.length}
-                        />
-                    ))}
                     {
                         stateSounds.soundsInfo !== undefined ? stateSounds.soundsInfo.map((sound: any) => (
                             <SoundPlayer
                                 key={"sound" + String(k++)}
+                                id={sound.id}
                                 name={sound.name}
                                 genre={sound.genre}
                                 length={sound.length}
                                 url={sound.url}
+                                loaded={sound.loaded}
                             />
                         )) : []}
 
