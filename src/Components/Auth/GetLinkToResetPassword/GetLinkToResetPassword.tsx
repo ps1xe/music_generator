@@ -7,10 +7,14 @@ import "../AuthStyle.css"
 export const GetLinkToResetPassword = () => {
 
     const [email, setEmail] = useState('');
+    const [isEmail, setIsEmail] = useState(true);
     const dispatch = useDispatch();
+
 
     const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        setIsEmail(emailRegex.test(event.target.value));
         dispatch(zeroingError())
     }
 
@@ -37,8 +41,10 @@ export const GetLinkToResetPassword = () => {
                     <label className="form-label" style={{ color: "#c9ced6" }}>Email</label>
                     <input onChange={emailChange} type="email" className="form-control" aria-describedby="emailHelp" />
                 </div>
-                <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Recovery password</button>
+                {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div></div>}
+                <button onClick={handleSubmit} style={{ width: "100%", marginTop: "8%" }} type="submit" className="btn btn-success " >Recovery password</button>
             </form>
+
             {stateError !== '' ? <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }} className="error-auth">{stateError}</div> : <div className="error-auth"></div>}
         </>
     );

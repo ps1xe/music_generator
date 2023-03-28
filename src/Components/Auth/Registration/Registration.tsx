@@ -130,15 +130,16 @@ const Registration = () => {
 
                         <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
                     </form>
-                    <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>Already have an account?⠀
+                    <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%", display: "flex", justifyContent: "space-between" }}>
                         <Link to="/login">Sign In</Link>
+                        <Link to="/password-recovery">Забыли пароль?</Link>
                     </div>
                 </div>
                 {(stateAuth === '' && passwordComparison) && (<div></div>)}
                 {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div></div>}
                 {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
                 {(stateAuth !== '' && passwordComparison && isEmail) ? (<div className="error-auth">{stateAuth}</div>) : <div></div>}
-                {!checkPasswordStrength(password).valid ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div></div>}
+                {!checkPasswordStrength(password).valid && password !== '' ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div></div>}
 
             </div>
 

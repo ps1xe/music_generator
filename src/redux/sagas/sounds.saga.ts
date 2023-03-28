@@ -28,9 +28,7 @@ function* generateSoundSaga(
 
     yield put(requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND_LOADING));
     yield call(SoundService.generateSounds, generationOptions);
-    yield put(
-      requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND_AFTER_WAITING)
-    );
+    yield put(requestSoundSuccess(SoundActions.SUCCESS_GENERATE_SOUND_LOADING));
   } catch (error) {
     yield put(requestSoundFailed());
   }

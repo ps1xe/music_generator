@@ -32,7 +32,7 @@ const Login = () => {
         dispatch(zeroingError())
     }
 
-    const swapToReg = (event: any) => {
+    const swapTo = (event: any) => {
         dispatch(zeroingError())
     }
 
@@ -48,7 +48,7 @@ const Login = () => {
         event.preventDefault();
     }
 
-    
+
 
 
     const stateAuth = useSelector((state: any) => state.authError);
@@ -93,9 +93,11 @@ const Login = () => {
                         <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign In</button>
                     </form>
 
-                    <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%" }}>New user?⠀
-                        <Link onClick={swapToReg} to="/reg">Create an account.</Link>
+                    <div className="alert alert-dark" role="alert" style={{ background: "#0c1019", color: "#c9ced6", margin: "auto", marginTop: "4%", display: "flex", justifyContent: "space-between" }}>
+                        <Link onClick={swapTo} to="/reg">Создать аккаунт</Link>
+                        <Link onClick={swapTo} to="/password-recovery">Забыли пароль?</Link>
                     </div>
+
                 </div>
                 {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div></div>}
                 {!minLenPasswordSatisfied && stateAuth === '' ? <div className="error-auth">Минимальная длина пароля 8</div> : <div></div>}

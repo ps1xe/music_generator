@@ -5,6 +5,7 @@ import {
   GetLinkToResetPasswordBody,
   LoginBody,
   RegistrationBody,
+  ResetPasswordBody,
 } from "../types/auth.types.js";
 
 export default class AuthService {
@@ -18,6 +19,24 @@ export default class AuthService {
     return (
       await $api.post("http://localhost:4000/auth/register", registationBody)
     ).data;
+  }
+
+  static async resetPassword(
+    resetBody: ResetPasswordBody
+  ): Promise<AxiosResponse<Profile>> {
+    return (
+      await $api.post(
+        "http://localhost:4000/auth/resetPassword/" + resetBody.token,
+        resetBody
+      )
+    ).data;
+  }
+
+  static async verificationRecoveryToken(
+    token: string
+  ): Promise<AxiosResponse<Profile>> {
+    return (await $api.get("http://localhost:4000/auth/verificationRecoveryToken/" + token))
+      .data;
   }
 
   static async updateTokens(): Promise<AxiosResponse<Profile>> {

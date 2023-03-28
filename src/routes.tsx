@@ -7,6 +7,7 @@ import { ConstsRoutes } from "./utils/consts"
 import Home from "./Components/Home/Home"
 import { GetLinkToResetPassword } from "./Components/Auth/GetLinkToResetPassword/GetLinkToResetPassword"
 import { Settings } from "./Components/Settings/Settings"
+import { ResetPassword } from "./Components/Auth/ResetPassword/ResetPassword"
 
 
 export const authRoutes = [
@@ -15,10 +16,7 @@ export const authRoutes = [
         path: ConstsRoutes.HOME_ROUTE,
         Component: Home
     },
-    {
-        path: ConstsRoutes.GET_LINK_TO_RESET_PASSWORD,
-        Component: GetLinkToResetPassword
-    },
+
     {
         path: ConstsRoutes.SETTINGS_ROUTE,
         Component: Settings
@@ -28,6 +26,14 @@ export const authRoutes = [
 ]
 
 export const publicRoutes = [
+    {
+        path: ConstsRoutes.GET_LINK_TO_RESET_PASSWORD,
+        Component: GetLinkToResetPassword
+    },
+    {
+        path: ConstsRoutes.RESET_PASSWORD,
+        Component: ResetPassword
+    },
 
     {
         path: ConstsRoutes.MAIN_ROUTE,

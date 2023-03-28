@@ -9,6 +9,11 @@ export interface RegistrationBody {
   password: string;
 }
 
+export interface ResetPasswordBody {
+  token: string;
+  newPassword: string;
+}
+
 export interface GetLinkToResetPasswordBody {
   email: string;
 }

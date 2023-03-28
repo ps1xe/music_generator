@@ -1,17 +1,14 @@
 import { GenerateSoundSuccess, SoundActions } from "../actions/sound.actions";
 
-const initialState = "";
+const initialState = 0;
 
 export const loadingSoundReducer = (
-  state: string = initialState,
+  state: number = initialState,
   action: GenerateSoundSuccess
 ) => {
   if (action.type === SoundActions.SUCCESS_GENERATE_SOUND_LOADING) {
-    return "Waiting";
-  } else if (
-    action.type === SoundActions.SUCCESS_GENERATE_SOUND_AFTER_WAITING
-  ) {
-    return "Complete";
+    const random = Math.random();
+    return random;
   }
   return state;
 };

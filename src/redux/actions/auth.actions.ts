@@ -2,6 +2,7 @@ import {
   GetLinkToResetPasswordBody,
   LoginBody,
   RegistrationBody,
+  ResetPasswordBody,
 } from "../../types/auth.types";
 
 export const requestAuthSuccess = (type: AuthActions, payload?: any) => ({
@@ -16,10 +17,18 @@ export enum AuthActions {
   GET_LINK_TO_RESET_PASSWORD = "GET_LINK_TO_RESET_PASSWORD",
   REQUEST_AUTH_FAILED = "REQUEST_AUTH_FAILED",
   ZEROING_ERROR = "ZEROING ERROR",
+  VERIFICATION_RECOVERY_TOKEN = "VERIFICATION_RECOVERY_TOKEN",
+  SUCCESS_VERIFICATION_RECOVERY_TOKEN = " SUCCESS_VERIFICATION_RECOVERY_TOKEN",
+  RESET_PASSWORD = "RESET_PASSWORD ",
 }
 
-export const requestAuthFailed = (payload: string) => ({
+export const requestAuthFailed = (payload?: string) => ({
   type: AuthActions.REQUEST_AUTH_FAILED,
+  payload,
+});
+
+export const requestVerificationSuccess = (payload: boolean) => ({
+  type: AuthActions.SUCCESS_VERIFICATION_RECOVERY_TOKEN,
   payload,
 });
 
@@ -33,6 +42,20 @@ export const login = (payload: LoginBody) => {
 export const zeroingError = () => {
   return {
     type: AuthActions.ZEROING_ERROR,
+  };
+};
+
+export const resetPassword = (payload: ResetPasswordBody) => {
+  return {
+    type: AuthActions.RESET_PASSWORD,
+    payload,
+  };
+};
+
+export const verificationRecoveryToken = (payload: string) => {
+  return {
+    type: AuthActions.VERIFICATION_RECOVERY_TOKEN,
+    payload,
   };
 };
 
@@ -80,4 +103,19 @@ export interface UpdateTokens {
 export interface GetLinkToResetPassword {
   type: AuthActions.GET_LINK_TO_RESET_PASSWORD;
   payload: GetLinkToResetPasswordBody;
+}
+
+export interface VerificationRecoveryToken {
+  type: AuthActions.VERIFICATION_RECOVERY_TOKEN;
+  payload: string;
+}
+
+export interface VerificationRecoveryTokenSuccess {
+  type: AuthActions.SUCCESS_VERIFICATION_RECOVERY_TOKEN;
+  payload: boolean;
+}
+
+export interface ResetPassword {
+  type: AuthActions.RESET_PASSWORD;
+  payload: ResetPasswordBody;
 }

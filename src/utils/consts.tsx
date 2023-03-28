@@ -6,5 +6,6 @@ export enum ConstsRoutes {
     LOGIN_ROUTE = '/login',
     REGISTRATION_ROUTE = '/reg',
     SETTINGS_ROUTE = '/settings',
-    GET_LINK_TO_RESET_PASSWORD = '/password-recovery'
+    GET_LINK_TO_RESET_PASSWORD = '/password-recovery',
+    RESET_PASSWORD = '/reset-password/:token'
 }

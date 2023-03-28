@@ -67,10 +67,4 @@ export interface GenerateSoundSuccessLoading {
   type: SoundActions.SUCCESS_GENERATE_SOUND_LOADING;
 }
 
-export interface GenerateSoundSuccessAfterWaiting {
-  type: SoundActions.SUCCESS_GENERATE_SOUND_AFTER_WAITING;
-}
-
-export type GenerateSoundSuccess =
-  | GenerateSoundSuccessLoading
-  | GenerateSoundSuccessAfterWaiting;
+export type GenerateSoundSuccess = GenerateSoundSuccessLoading;

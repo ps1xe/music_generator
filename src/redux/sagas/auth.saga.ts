@@ -7,7 +7,10 @@ import {
   Login,
   Registration,
   requestAuthFailed,
+  requestVerificationSuccess,
+  ResetPassword,
   UpdateTokens,
+  VerificationRecoveryToken,
 } from "../actions/auth.actions";
 
 function* loginSaga(action: Login): Generator<Effect, void, Profile> {
@@ -57,6 +60,27 @@ function* getLinkToResetPasswordSaga(
   }
 }
 
+function* resetPasswordSaga(action: ResetPassword): Generator<Effect, void> {
+  try {
+    const requestBody = action.payload;
+    yield call(AuthService.resetPassword, requestBody);
+  } catch (error: any) {
+    yield put(requestAuthFailed());
+  }
+}
+
+function* verificationRecoveryTokenSaga(
+  action: VerificationRecoveryToken
+): Generator<Effect, void, boolean> {
+  try {
+    const token = action.payload;
+    const isValid = yield call(AuthService.verificationRecoveryToken, token);
+    yield put(requestVerificationSuccess(isValid));
+  } catch (error: any) {
+    yield put(requestAuthFailed());
+  }
+}
+
 export function* watcherAuthSaga(): Generator<Effect, void> {
   yield takeEvery(AuthActions.LOGIN, loginSaga);
   yield takeEvery(AuthActions.REGISTRATION, registrationSaga);
@@ -64,5 +88,10 @@ export function* watcherAuthSaga(): Generator<Effect, void> {
   yield takeEvery(
     AuthActions.GET_LINK_TO_RESET_PASSWORD,
     getLinkToResetPasswordSaga
+  );
+  yield takeEvery(AuthActions.RESET_PASSWORD, resetPasswordSaga);
+  yield takeEvery(
+    AuthActions.VERIFICATION_RECOVERY_TOKEN,
+    verificationRecoveryTokenSaga
   );
 }

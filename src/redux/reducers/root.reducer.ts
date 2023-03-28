@@ -5,6 +5,7 @@ import { getProfileReducer } from "./get-profile.reducer";
 import { getSoundsReducer } from "./get-sounds.reducer";
 import { authFailedReducer } from "./request-auth-failed.reducer";
 import { requestUserFailedReducer } from "./request-user-failed.reducer";
+import { verificationRecoveryTokenReducer } from "./verification-recovery-token.reducer";
 
 export const rootReducer = combineReducers({
   sounds: getSoundsReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   authError: authFailedReducer,
   isAuthenticated: requestUserFailedReducer,
   loadingSound: loadingSoundReducer,
+  recoveryTokenValidity: verificationRecoveryTokenReducer
 });
