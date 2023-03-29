@@ -49,7 +49,7 @@ const Login = () => {
     }
 
 
-
+    dispatch(zeroingError())
 
     const stateAuth = useSelector((state: any) => state.authError);
 
