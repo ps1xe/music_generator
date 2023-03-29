@@ -63,7 +63,6 @@ const Home = () => {
     const stateProfile = useSelector((state: any) => state.profile)
     const loadingSound = useSelector((state: any) => state.loadingSound);
     const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
-    console.log(loadingSound);
     useEffect(() => { dispatch(getProfile()) }, [dispatch]);
     useEffect(() => { dispatch(getSounds(1)) }, [loadingSound]);
 

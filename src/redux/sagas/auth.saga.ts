@@ -64,8 +64,10 @@ function* resetPasswordSaga(action: ResetPassword): Generator<Effect, void> {
   try {
     const requestBody = action.payload;
     yield call(AuthService.resetPassword, requestBody);
+    yield put(requestAuthFailed("Complete-reset-password"));
   } catch (error: any) {
-    yield put(requestAuthFailed());
+    const errorMassage = error.response.data.message;
+    yield put(requestAuthFailed(errorMassage));
   }
 }
 

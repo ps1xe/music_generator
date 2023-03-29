@@ -1,7 +1,7 @@
-import { ChangeEvent, useState, MouseEvent, useEffect } from "react";
+import { ChangeEvent, useState, MouseEvent, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { resetPassword, verificationRecoveryToken } from "../../../redux/actions/auth.actions";
+import { resetPassword, verificationRecoveryToken, zeroingError } from "../../../redux/actions/auth.actions";
 
 export const ResetPassword = () => {
     const [password, setPassword] = useState('');
@@ -10,8 +10,6 @@ export const ResetPassword = () => {
     const { token } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    console.log(token);
 
     const checkPasswordStrength = (password: string) => {
         if (password.length < 8) {
@@ -64,16 +62,25 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         if (token) {
-            console.log(token)
             dispatch(verificationRecoveryToken(token))
         }
-    }, [dispatch])
+    }, [])
 
-    useEffect(() => {
+    useMemo(() => {
         if (!stateValidityRecoveryToken)
-            navigate('/login');
+        navigate('/login');
 
     }, [stateValidityRecoveryToken]);
+
+    const stateAuth = useSelector((state: any) => state.authError);
+
+    useEffect(() => {
+        if (stateAuth === 'Complete-reset-password') {
+            dispatch(zeroingError())
+            navigate('/login');
+        }
+    }, [stateAuth]);
+
 
     return (
         <>
@@ -90,6 +97,7 @@ export const ResetPassword = () => {
             </form>
             {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
             {!checkPasswordStrength(password).valid && password !== '' ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div></div>}
+            {stateAuth !== '' ? <div style={{marginTop: "5%"}} className="error-auth">{stateAuth}</div> : <div></div>}
         </>
     );
 };

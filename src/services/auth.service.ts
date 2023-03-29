@@ -23,20 +23,36 @@ export default class AuthService {
 
   static async resetPassword(
     resetBody: ResetPasswordBody
-  ): Promise<AxiosResponse<Profile>> {
+  ): Promise<AxiosResponse<void>> {
     return (
       await $api.post(
         "http://localhost:4000/auth/resetPassword/" + resetBody.token,
-        resetBody
+        { newPassword: resetBody.newPassword }
       )
     ).data;
   }
 
   static async verificationRecoveryToken(
     token: string
-  ): Promise<AxiosResponse<Profile>> {
-    return (await $api.get("http://localhost:4000/auth/verificationRecoveryToken/" + token))
-      .data;
+  ): Promise<AxiosResponse<boolean, any>> {
+    try {
+      return (
+        await $api.get(
+          "http://localhost:4000/auth/verificationRecoveryToken/" + token
+        )
+      ).data;
+    } catch (error: any) {
+      const responseFaile: AxiosResponse<any, any> = {
+        data: false,
+        status: error.response ? error.response.status : 500,
+        statusText: error.response
+          ? error.response.statusText
+          : "Internal Server Error",
+        headers: error.response ? error.response.headers : {},
+        config: error.config,
+      };
+      return responseFaile.data;
+    }
   }
 
   static async updateTokens(): Promise<AxiosResponse<Profile>> {

@@ -4,7 +4,7 @@ import {
   VerificationRecoveryTokenSuccess,
 } from "../actions/auth.actions";
 
-const initialState = false;
+const initialState = true;
 
 export const verificationRecoveryTokenReducer = (
   state: boolean = initialState,
