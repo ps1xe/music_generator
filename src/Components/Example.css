@@ -1,0 +1,47 @@
+.music-generator {
+    background-color: #2b2e3b;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #000;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 500px;
+}
+
+.generator-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #b7b7b7;
+}
+
+.generator-footer {
+    text-align: center;
+}
+
+.generate-button {
+    padding: 10px 20px;
+    background-color: #1fa4e4;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.generate-button:hover {
+    background-color: #0b85c3;
+}

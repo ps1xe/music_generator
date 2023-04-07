@@ -1,6 +1,6 @@
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Navbar.css'
+import './Navbar.css';
 
 const DefaultNavbar = () => {
 
@@ -24,8 +24,8 @@ const DefaultNavbar = () => {
         // </Navbar>
 
         <Navbar expand="sm" variant="dark" fixed="top">
-            <Container fluid>
-                {/* <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand> */}
+            <Container style={{ paddingRight: "5%", paddingLeft: "3%" }} fluid>
+                
                 <Navbar.Toggle aria-controls='offcanvasNavbar-expand-sm' />
                 <Navbar.Offcanvas style={{ width: "100%", height: "100%", background: "#161B22", color: "#fefefe" }}
                     id='offcanvasNavbar-expand-sm'
@@ -37,16 +37,17 @@ const DefaultNavbar = () => {
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body style={{ textAlign: "center", height: "57px" }}>
-                        <Nav className="me-auto">
+                        <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>    
+                            <Navbar.Brand href="#">
+                                Logo
+                                </Navbar.Brand>
+                        </Nav>
+                        <Nav className="ms-auto">
                             <Link to='/main' className='menu_button'>Home</Link>
                             <Link to='/about' className='menu_button'>About</Link>
                             <Link to='/contacs' className='menu_button'>Contacs</Link>
 
                         </Nav>
-                        <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Link to="/login" className='auth_button'>Press</Link>
-                        </Nav>
-
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
             </Container>

@@ -68,7 +68,7 @@ const Home = () => {
 
     useMemo(() => {
         if (isAuthenticated === 'Access error') {
-            navigate('/login')
+            // navigate('/login')
         }
     }, [isAuthenticated]);
 
@@ -139,7 +139,15 @@ const Home = () => {
                             />
                         )) : []}
 
-
+                            <SoundPlayer
+                                key={"sound" + String(k++)}
+                                id={'dgdgdgd'}
+                                name={'sdasdadad'}
+                                genre={'Phonk'}
+                                length={'sound.length'}
+                                url={'sound.url'}
+                                loaded={true}
+                            />
 
                     {/* <Pagination>
                         <Pagination.First />

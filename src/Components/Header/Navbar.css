@@ -3,9 +3,10 @@
     padding-top: 14px;
     border: none;
     font-size: 20px;
+    font-weight: bold;
     background: 0%;
     text-decoration: none;
-    color: #fefefe;
+    color: black;
 }
 
 .auth_button {
@@ -23,7 +24,7 @@
 }
 
 .menu_button:hover {
-    color: #fefefe;
+    color: black;
 }
 
 .auth_button:hover {
@@ -31,8 +32,17 @@
     border: 2px #0053ff solid;
 }
 
+@media(max-width:850px) {
+    .menu_button {
+        color: #fefefe;
+    }
+    .menu_button:hover {
+        color: #fefefe;
+    }
+}
+
 .menu_button:after {
-    background-color: #0053ff;
+    background-color: #a775fe;
     display: block;
     content: "";
     height: 2px;
