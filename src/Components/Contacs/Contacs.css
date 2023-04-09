@@ -1,31 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&display=swap');
 .contact-box {
     justify-content: space-evenly;
     display: flex;
     align-items: center;
-    height: 100vh;
 }
 
 .contact-header {
     text-align: center;
     color: #fefefe;
     font-size: 80px;
+    font-weight: bold;
+    font-family: Bungee;
+}
+
+.contact-line {
+    background: #53438d;
+    width: 100%;
+    height: 3px;
+    margin-top: 80px;
 }
 
 .contact-content {
     color: #fefefe;
+    width: 500px;
+    padding-left: 70px;
 }
 
 .job-title {
-    color: #0d6efd;
-    font-size: 30px;
+    color: #a775fe;
+    font-size: 18px;
     font-weight: 700;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 50px;
+}
+
+.text-before-title {
+    color: #aaa9a9;
+    width: 400px;
 }
 
 .contact-link {
     text-decoration: none;
-    color: #fefefe;
+    color: #534b72;
     font-size: 20px;
     font-weight: 500;
+    width: 100%;
+}
+
+.contact-link:hover {
+    color: #a775fe;
+    text-shadow: 0px 0px 2px #a775fe, 0px 0px 0px #a775fe, 0px 0px 10px #a775fe;
+}
+
+.link-decoration {
+    background: #574597;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 35px;
 }
 
 .contact-link-header {
@@ -35,28 +66,34 @@
     margin-top: 10px;
 }
 
-.contact-link:hover {
-    color: #fefefe;
-}
-
-.contact-link:after {
-    background-color: #0053ff;
-    display: block;
-    content: "";
-    height: 2px;
-    width: 0%;
-    -webkit-transition: width .3s ease-in-out;
-    -moz--transition: width .3s ease-in-out;
-    transition: width .3s ease-in-out;
-}
-
-.contact-link:hover:after,
-.contact-link:focus:after {
-    width: 100%;
-}
-
 @media(max-width:1200px) {
     .contact-box {
         flex-direction: column;
+    }
+    .job-title {
+        text-align: center;
+    }
+    .text-before-title {
+        width: 600px;
+        text-align: center;
+        margin-bottom: 6%;
+    }
+    .contact-content {
+        padding: 0;
+    }
+}
+
+@media(max-width:630px) {
+    .contact-content {
+        width: 80%;
+    }
+    .contact-link {
+        font-size: 15px;
+    }
+    .contact-header {
+        font-size: 50px;
+    }
+    .text-before-title {
+        width: 300px;
     }
 }

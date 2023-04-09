@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const DefaultNavbar = () => {
+const DefaultNavbar = ({ theme }: any) => {
 
     return (
         // <Navbar expand="lg" variant="dark" sticky="top" style={{ background: "none" }}>
@@ -25,7 +25,7 @@ const DefaultNavbar = () => {
 
         <Navbar expand="sm" variant="dark" fixed="top">
             <Container style={{ paddingRight: "5%", paddingLeft: "3%" }} fluid>
-                
+
                 <Navbar.Toggle aria-controls='offcanvasNavbar-expand-sm' />
                 <Navbar.Offcanvas style={{ width: "100%", height: "100%", background: "#161B22", color: "#fefefe" }}
                     id='offcanvasNavbar-expand-sm'
@@ -37,21 +37,21 @@ const DefaultNavbar = () => {
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body style={{ textAlign: "center", height: "57px" }}>
-                        <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>    
+                        <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Navbar.Brand href="#">
                                 Logo
-                                </Navbar.Brand>
+                            </Navbar.Brand>
                         </Nav>
                         <Nav className="ms-auto">
-                            <Link to='/main' className='menu_button'>Home</Link>
-                            <Link to='/about' className='menu_button'>About</Link>
-                            <Link to='/contacs' className='menu_button'>Contacs</Link>
+                            <Link to='/main' style={theme === "dark" ? { color: "black" } : { color: "white" }} className='menu_button'>Главная</Link>
+                            <Link to='/about' style={theme === "dark" ? { color: "black" } : { color: "white" }} className='menu_button'>О проекте</Link>
+                            <Link to='/contacs' style={theme === "dark" ? { color: "black" } : { color: "white" }} className='menu_button'>Контакты</Link>
 
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
             </Container>
-        </Navbar>
+        </Navbar >
 
 
     );
