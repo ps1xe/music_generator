@@ -5,6 +5,7 @@ body {
 
 .recovery-password-body {
     background: linear-gradient(to right, #fcfcf8, #d5d2fa);
+    height: 100vh;
 }
 
 .auth-page {
@@ -140,7 +141,13 @@ body {
 }
 
 .error-auth {
-    color: red;
+    color: rgb(248, 74, 74);
+    height: 20px;
+    text-shadow: 0px 0px 2px rgb(248, 74, 74), 0px 0px 0px rgb(248, 74, 74), 0px 0px 0px rgb(248, 74, 74);
+}
+
+.complete-auth {
+    color: rgb(120, 233, 68);
     height: 20px;
 }
 
@@ -163,7 +170,7 @@ body {
     }
 }
 
-@media(max-width:1300px) {
+@media(max-width:1380px) {
     .auth-block {
         width: 30%;
     }
@@ -211,7 +218,7 @@ body {
     }
 }
 
-@media(max-width:740px) {
+@media(max-width:780px) {
     .auth-block {
         width: 55%;
     }

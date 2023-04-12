@@ -8,14 +8,14 @@ export default class SoundService {
     try {
       return (
         await $api.get("http://localhost:4000/users/getSounds", {
-          params: { page: page, take: 8, order: "DESC" },
+          params: { page: page, take: 4, order: "DESC" },
         })
       ).data;
     } catch (error) {
       await AuthService.updateTokens();
       return (
         await $api.get("http://localhost:4000/users/getSounds", {
-          params: { page: page, take: 8, order: "DESC" },
+          params: { page: page, take: 4, order: "DESC" },
         })
       ).data;
     }

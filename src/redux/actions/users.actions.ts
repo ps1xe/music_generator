@@ -17,14 +17,15 @@ export enum UserActions {
   SUCCESS_CHANGE_PASSWORD = "SUCCESS_CHANGE_PASSWORD",
   GET_PROFILE = "GET_PROFILE",
   SUCCESS_GET_PROFILE = "SUCCESS_GET_PROFILE",
+  SUCCESS_CHANGE_NICKNAME = "SUCCESS_CHANGE_NICKNAME",
   CHANGE_NICKNAME = "CHANGE_NICKNAME",
   REQUEST_CHANGE_PASSWORD_FAILED = "REQUEST_CHANGE_PASSWORD_FAILED",
   ZEROING_ERROR = "ZEROING ERROR",
-  REQUEST_USER_FAILED = "REQUEST_USER_FAILED",
+  RESPONSE_USER = "REQUEST_USER_FAILED",
 }
 
-export const requestUserFailed = (payload: string) => ({
-  type: UserActions.REQUEST_USER_FAILED,
+export const responseUser = (payload: string) => ({
+  type: UserActions.RESPONSE_USER,
   payload,
 });
 
@@ -94,8 +95,8 @@ export interface RequestChangePasswordFailed {
   payload: string;
 }
 
-export interface RequestUserFailed {
-  type: UserActions.REQUEST_USER_FAILED;
+export interface ResponseUser{
+  type: UserActions.RESPONSE_USER;
   payload: string;
 }
 
@@ -113,4 +114,9 @@ export interface ChangePasswordSuccess {
 export interface GetProfileSuccess {
   type: UserActions.SUCCESS_GET_PROFILE;
   payload: Profile;
+}
+
+export interface ChangeNicknameSuccess {
+  type: UserActions.SUCCESS_CHANGE_NICKNAME;
+  payload: ChangeNicknameBody;
 }

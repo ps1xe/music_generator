@@ -31,7 +31,6 @@ const Login = () => {
 
     const checkPasswordActive = (event: ChangeEvent<HTMLInputElement>) => {
         setCheckPassword(!checkPassword);
-        dispatch(zeroingError())
     }
 
     const swapTo = (event: any) => {
@@ -50,8 +49,8 @@ const Login = () => {
         event.preventDefault();
     }
 
+    useEffect(() => { dispatch(zeroingError()) }, [])
 
-    dispatch(zeroingError())
 
     const stateAuth = useSelector((state: any) => state.authError);
 
@@ -60,6 +59,8 @@ const Login = () => {
             navigate('/home');
         }
     }, [stateAuth]);
+
+
 
     return (
         <>

@@ -14,7 +14,7 @@ const Home = () => {
     const [soundName, setSoundName] = useState('');
     const [soundTime, setSoundTime] = useState('');
     const [genre, setGenre] = useState('Phonk');
-    const [placeholderSoundName, setPlaceholderSoundName] = useState('name');
+    const [placeholderSoundName, setPlaceholderSoundName] = useState('Имя трека');
     const [formClass, setformClass] = useState('menu-generate');
     const [nameSoundClass, setNameSoundClass] = useState('name-music');
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Home = () => {
         setSoundName(event.target.value);
         setNameSoundClass("name-music");
         setformClass("menu-generate");
-        setPlaceholderSoundName("name")
+        setPlaceholderSoundName("Имя трека")
     }
 
     const soundTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,8 +39,11 @@ const Home = () => {
         event.preventDefault();
         if (soundName === '') {
             setformClass("menu-generate-war");
-            setPlaceholderSoundName("Invalid input")
+            setPlaceholderSoundName("Пустое поле")
             setNameSoundClass("name-music-war")
+            return;
+        }
+        else if (soundName.length > 20) {
             return;
         }
         else {
@@ -62,15 +65,15 @@ const Home = () => {
     const stateSounds = useSelector((state: any) => state.sounds)
     const stateProfile = useSelector((state: any) => state.profile)
     const loadingSound = useSelector((state: any) => state.loadingSound);
-    const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
+    const responseUser = useSelector((state: any) => state.responseUser)
     useEffect(() => { dispatch(getProfile()) }, [dispatch]);
     useEffect(() => { dispatch(getSounds(1)) }, [loadingSound]);
 
     useMemo(() => {
-        if (isAuthenticated === 'Access error') {
-            // navigate('/login')
+        if (responseUser === 'Access error') {
+            navigate('/login')
         }
-    }, [isAuthenticated]);
+    }, [responseUser]);
 
 
 
@@ -103,28 +106,33 @@ const Home = () => {
                 avatarUrl={stateProfile.avatar}
             />
             <div className="home-background">
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "15vh", width: "90%", justifyContent: "center", alignItems: "center" }}>
+                    <div className="home-title">Генератор музыки</div>
+                    <div style={{ marginTop: "0" }} className="decoratiom-line"></div>
 
-                <div style={{ display: "flex", marginTop: "130px", justifyContent: "space-between", width: "90%" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
 
-                    <form className={formClass}>
+                        <form className={formClass}>
 
-                        <input value={soundName} onChange={soundNameChange} id="soundName" className={nameSoundClass} style={{ width: "70%" }} placeholder={placeholderSoundName} />
+                            <input value={soundName} onChange={soundNameChange} id="soundName" className={nameSoundClass} style={{ width: "70%" }} placeholder={placeholderSoundName} />
 
-                        <select value={genre} onChange={genreChange} className="genre-select" style={{ width: "27%", minWidth: "100px" }}>
-                            <option value="Phonk">Phonk</option>
-                            <option value="Classical">Classical</option>
-                            <option value="Jazz">Jazz</option>
-                            <option value="Rock">Rock</option>
-                        </select>
+                            <select value={genre} onChange={genreChange} className="genre-select" style={{ width: "27%", minWidth: "100px" }}>
+                                <option value="Phonk">Phonk</option>
+                                <option value="Classical">Classical</option>
+                                <option value="Jazz">Jazz</option>
+                                <option value="Rock">Rock</option>
+                            </select>
 
-                        <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "60px" }} value={soundTime} type="text" placeholder="00:00" />
+                            <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "60px" }} value={soundTime} type="text" placeholder="00:00" />
 
-                    </form>
-                    <button onClick={handleSubmit} style={{ marginLeft: "15px" }} type="button" className="btn btn-success">Generate</button>
+                        </form>
+                        <button onClick={handleSubmit} type="button" className="gen-button">Генерировать</button>
 
+                    </div>
                 </div>
+                {soundName.length > 20 ? <div style={{ marginTop: "35px" }} className="error-auth">Максимальное имя трека - 20 символов</div> : <div style={{ marginTop: "35px", height: "20px" }}></div>}
 
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                <div className="track-block" >
 
                     {
                         stateSounds.soundsInfo !== undefined ? stateSounds.soundsInfo.map((sound: any) => (
@@ -139,29 +147,10 @@ const Home = () => {
                             />
                         )) : []}
 
-                            <SoundPlayer
-                                key={"sound" + String(k++)}
-                                id={'dgdgdgd'}
-                                name={'sdasdadad'}
-                                genre={'Phonk'}
-                                length={'sound.length'}
-                                url={'sound.url'}
-                                loaded={true}
-                            />
-
-                    {/* <Pagination>
-                        <Pagination.First />
-                        <Pagination.Prev />
-                        <Pagination.Item>{1}</Pagination.Item>
-                        <Pagination.Ellipsis />
-                        <Pagination.Item active>{2}</Pagination.Item>
-                        <Pagination.Next />
-                        <Pagination.Last />
-                    </Pagination> */}
-                    {/* <img style={{ height: "200px", width: "400px" }} src='https://i.yapx.ru/So2wJ.png' alt='pixlr-bg-result.png' />
-                    <div style={{ color: "white", fontSize: "20px", marginTop: "10px" }} >You have no entries :(</div> */}
                 </div>
-                <Pagination className="pagination">{pages}</Pagination>
+                <div style={{ height: "40px", marginBottom: "50px" }}>
+                    <Pagination className="pagination">{pages}</Pagination>
+                </div>
             </div >
         </>
     );

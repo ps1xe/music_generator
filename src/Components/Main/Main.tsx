@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultNavbar from '../Header/DefaultNavbar';
-import SoundPlayer from '../Home/SoundPlayer';
+import ExampleSoundPlayer from '../Home/ExampleSoundPlayer';
 import './Main.css'
 
 const Main = () => {
@@ -25,7 +25,7 @@ const Main = () => {
     const exampleSounds = [
         <div className='example-box' key={0}>
             <img className='example-img' src="https://www.kaunus.com/app/uploads/2021/05/M%C3%BAsica-cl%C3%A1sica-origen-hitos..-2.png" alt=''></img>
-            <SoundPlayer
+            <ExampleSoundPlayer
                 key={"sound"}
                 id={'dgdgdgd'}
                 name={'Example_1'}
@@ -37,7 +37,7 @@ const Main = () => {
         </div>,
         <div className='example-box' key={1}>
             <img className='example-img' src="https://i.ytimg.com/vi/RreryzfxxxE/maxresdefault.jpg" alt=''></img>
-            <SoundPlayer
+            <ExampleSoundPlayer
                 key={"sound1"}
                 id={'dgdgdgd'}
                 name={'Example_2'}
@@ -49,7 +49,7 @@ const Main = () => {
         </div>,
         <div className='example-box' key={2}>
             <img className='example-img' src="https://img3.goodfon.ru/wallpaper/nbig/f/a5/gitara-rok-muzhchina-muzyka.jpg" alt=''></img>
-            <SoundPlayer
+            <ExampleSoundPlayer
                 key={"sound3"}
                 id={'dgdgdgd'}
                 name={'Example_3'}

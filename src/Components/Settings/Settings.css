@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.profile-settings {
+    padding-right: 5%;
+    padding-left: 5%;
+    width: 100%;
+    overflow: scroll;
+    height: 100vh;
+}
+
+.nickname {
+    color: white;
+    font-family: Roboto;
+    font-size: 35px;
+}
+
+.profile-settings::-webkit-scrollbar {
+    width: 0;
+}
+
+.title-change-password {
+    width: 60%;
+    text-align: start;
+    color: white;
+    font-family: Roboto;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.separator-line {
+    background: #574597;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.left-settings-menu {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    background: #1b1b1b;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-settings-menu-button {
+    display: flex;
+    color: white;
+    background: #373737;
+    border: 2px solid #494949;
+    width: 70px;
+    justify-content: center;
+    height: 70px;
+    text-align: center;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    align-items: center;
+    display: flex;
+}
+
+.left-settings-menu-button:hover {
+    border-color: #574597;
+}
+
+.left-settings-menu-button-active {
+    display: flex;
+    width: 70px;
+    height: 70px;
+    background: #373737;
+    border: 2px solid #a775fe;
+    border-radius: 18px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width:740px) {
+    .left-settings-menu-button {
+        width: 50px;
+        height: 50px;
+    }
+    .left-settings-menu-button-active {
+        width: 50px;
+        height: 50px;
+    }
+    .left-settings-menu {
+        width: 80px;
+    }
+    .nickname {
+        font-size: 25px;
+    }
+}
+
+@media(max-width:455px) {
+    .title-change-password {
+        font-size: 25px;
+    }
+}

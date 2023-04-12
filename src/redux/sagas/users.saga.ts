@@ -7,7 +7,7 @@ import {
   ChangingAvatar,
   GetProfile,
   requestChangePassword,
-  requestUserFailed,
+  responseUser,
   requestUserSuccess,
   UserActions,
 } from "../actions/users.actions";
@@ -19,8 +19,9 @@ function* changingAvatarSaga(
     const formData = action.payload;
     const avatar = yield call(UsersService.changingAvatar, formData);
     yield put(requestUserSuccess(UserActions.SUCCESS_CHANGING_AVATAR, avatar));
+    yield put(responseUser('Complete-set-avatar'));
   } catch (error) {
-    yield put(requestUserFailed('Access error'));
+    yield put(responseUser('Access error'));
   }
 }
 
@@ -38,10 +39,10 @@ function* changePasswordSaga(action: ChangePassword): Generator<Effect, void> {
 function* getProfileSaga(action: GetProfile): Generator<Effect, void, Profile> {
   try {
     const profile = yield call(UsersService.getProfile);
-    yield put(requestUserFailed('Complete'));
+    yield put(responseUser('Complete'));
     yield put(requestUserSuccess(UserActions.SUCCESS_GET_PROFILE, profile));  
   } catch (error) {
-    yield put(requestUserFailed('Access error'));
+    yield put(responseUser('Access error'));
   }
 }
 
@@ -49,9 +50,9 @@ function* changeNicknameSaga(action: ChangeNickname): Generator<Effect, void> {
   try {
     const nickname = action.payload;
     yield call(UsersService.changeNickname, nickname);
-    yield put(requestUserFailed('Complete'));
+    yield put(requestUserSuccess(UserActions.SUCCESS_CHANGE_NICKNAME, 'Complete-change-nickaname'));  
   } catch (error) {
-    yield put(requestUserFailed('Access error'));
+    yield put(responseUser('Access error'));
   }
 }
 

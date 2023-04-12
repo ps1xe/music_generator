@@ -22,7 +22,7 @@ export enum AuthActions {
   RESET_PASSWORD = "RESET_PASSWORD ",
 }
 
-export const requestAuthFailed = (payload?: string) => ({
+export const requestAuth = (payload?: string) => ({
   type: AuthActions.REQUEST_AUTH_FAILED,
   payload,
 });

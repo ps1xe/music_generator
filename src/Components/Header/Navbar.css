@@ -6,7 +6,7 @@
     font-weight: bold;
     background: 0%;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .auth_button {
@@ -24,7 +24,7 @@
 }
 
 .menu_button:hover {
-    color: black;
+    color: white;
 }
 
 .auth_button:hover {

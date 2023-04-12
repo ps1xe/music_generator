@@ -2,6 +2,7 @@ import { ChangeEvent, useState, MouseEvent, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { resetPassword, verificationRecoveryToken, zeroingError } from "../../../redux/actions/auth.actions";
+import "./ResetPassword.css";
 
 export const ResetPassword = () => {
     const [password, setPassword] = useState('');
@@ -36,6 +37,8 @@ export const ResetPassword = () => {
     }
 
 
+    document.body.style.backgroundColor = 'black';
+
     const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
         event.target.value !== repetePassword ? setPasswordComparison(false) : setPasswordComparison(true);
@@ -68,7 +71,7 @@ export const ResetPassword = () => {
 
     useMemo(() => {
         if (!stateValidityRecoveryToken)
-        navigate('/login');
+            navigate('/login');
 
     }, [stateValidityRecoveryToken]);
 
@@ -84,20 +87,23 @@ export const ResetPassword = () => {
 
     return (
         <>
-            <form>
-                <div className="mb-3">
-                    <label className="form-label" style={{ color: "#c9ced6" }}>Password</label>
-                    <input onChange={passwordChange} type="password" className="form-control" />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label" style={{ color: "#c9ced6" }}>Repete Password</label>
-                    <input onChange={repetePasswordChange} type="password" className="form-control" />
-                </div>
-                <button onClick={handleSubmit} style={{ width: "100%" }} type="submit" className="btn btn-success " >Sign Out</button>
-            </form>
-            {passwordComparison ? <div></div> : <div className="error-auth">Password mismatch!!!</div>}
-            {!checkPasswordStrength(password).valid && password !== '' ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div></div>}
-            {stateAuth !== '' ? <div style={{marginTop: "5%"}} className="error-auth">{stateAuth}</div> : <div></div>}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", width: "100%" }}>
+                <form style={{ marginBottom: "24px", width: "60%" }}>
+                    <div className="mb-3">
+                        <label style={{ color: "white", fontFamily: "Roboto", fontSize: "20px" }}>Новый пароль</label>
+                        <input style={{ background: "0", height: "50px", color: "white", borderRadius: "20px", border: "2px solid #818181" }} onChange={passwordChange} type="password" className="form-control" />
+                    </div>
+                    <div className="mb-3">
+                        <label style={{ color: "white", fontFamily: "Roboto", fontSize: "20px" }}>Повторите пароль</label>
+                        <input style={{ background: "0", height: "50px", color: "white", borderRadius: "20px", border: "2px solid #818181" }} onChange={repetePasswordChange} type="password" className="form-control" />
+                    </div>
+                    <button className="save-button" onClick={handleSubmit} style={{ width: "100%" }} type="submit">Sign Out</button>
+                </form>
+                {passwordComparison ? <div style={{ display: "none" }}></div> : <div style={{ textAlign: "center", height: "25px"  }} className="error-auth">Пароли не совпадают!!!</div>}
+                {!checkPasswordStrength(password).valid && password !== '' ? <div style={{ textAlign: "center", height: "25px"  }} className="error-auth">{checkPasswordStrength(password).message}</div> : <div style={{ display: "none" }}></div>}
+                {stateAuth !== '' ? <div style={{ textAlign: "center", height: "25px" }} className="error-auth">{stateAuth}</div> : <div style={{ display: "none" }}></div>}
+
+            </div>
         </>
     );
 };

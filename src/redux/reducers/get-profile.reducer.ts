@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   email: "",
-  username: "",
+  username: "Username",
   avatar: "",
 } as ProfileState;
 

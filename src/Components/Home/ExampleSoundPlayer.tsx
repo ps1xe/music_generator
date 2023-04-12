@@ -13,7 +13,7 @@ export interface SoundPlayerProps {
     loaded: boolean;
 }
 
-const SoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlayerProps) => {
+const ExampleSoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlayerProps) => {
 
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -122,10 +122,10 @@ const SoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlayerProps)
                     onChange={handleSeek}
                 />
                 <div className="player-controls__remaining-time">{formatTime(remainingTime)}</div>
-                <button onClick={onClickDelete} type="button" className="del-track-button">Удалить</button>
+                {/* <button onClick={onClickDelete} type="button" className="btn btn-danger">Del</button> */}
             </div>
         </div>
     );
 }
 
-export default SoundPlayer;
+export default ExampleSoundPlayer;

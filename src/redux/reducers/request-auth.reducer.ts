@@ -3,7 +3,7 @@ import { AuthActions, RequestAuthFailed } from "../actions/auth.actions";
 
 const initialState = "";
 
-export const authFailedReducer = (
+export const authResponseReducer = (
   state: string = initialState,
   action: RequestAuthFailed
 ) => {

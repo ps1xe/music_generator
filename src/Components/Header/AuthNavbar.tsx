@@ -11,7 +11,7 @@ export interface AuthProfileProps {
 const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
     return (
 
-        <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#161B22" }}>
+        <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#0b0b0b" }}>
             <Container fluid>
                 {/* <Navbar.Brand href="#"><img alt="" src="../../../public/logo.png"></img></Navbar.Brand> */}
                 <Navbar.Toggle aria-controls='offcanvasNavbar-expand-sm' />
@@ -26,9 +26,9 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
                     </Offcanvas.Header>
                     <Offcanvas.Body style={{ textAlign: "center", height: "57px" }}>
                         <Nav className="me-auto">
-                            <Link to='/home' className='menu_button'>Home</Link>
-                            <Link to='/about' className='menu_button'>About</Link>
-                            <Link to='/contacs' className='menu_button'>Contacs</Link>
+                            <Link to='/home' className='menu_button'>Главная</Link>
+                            <Link to='/about' className='menu_button'>О проекте</Link>
+                            <Link to='/contacs' className='menu_button'>Контакты</Link>
 
                         </Nav>
                         <Nav style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

@@ -6,7 +6,7 @@ import {
   GetLinkToResetPassword,
   Login,
   Registration,
-  requestAuthFailed,
+  requestAuth,
   requestVerificationSuccess,
   ResetPassword,
   UpdateTokens,
@@ -17,10 +17,10 @@ function* loginSaga(action: Login): Generator<Effect, void, Profile> {
   try {
     const loginBody = action.payload;
     yield call(AuthService.login, loginBody);
-    yield put(requestAuthFailed("Complete"));
+    yield put(requestAuth("Complete"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
-    yield put(requestAuthFailed(errorMassage));
+    yield put(requestAuth(errorMassage));
   }
 }
 
@@ -30,10 +30,10 @@ function* registrationSaga(
   try {
     const registrationBody = action.payload;
     yield call(AuthService.registration, registrationBody);
-    yield put(requestAuthFailed("Complete"));
+    yield put(requestAuth("Complete"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
-    yield put(requestAuthFailed(errorMassage));
+    yield put(requestAuth(errorMassage));
   }
 }
 
@@ -44,7 +44,7 @@ function* updateTokensSaga(
     yield call(AuthService.updateTokens);
   } catch (error: any) {
     const errorMassage = error.response.data.message;
-    yield put(requestAuthFailed(errorMassage));
+    yield put(requestAuth(errorMassage));
   }
 }
 
@@ -54,9 +54,10 @@ function* getLinkToResetPasswordSaga(
   try {
     const requestBody = action.payload;
     yield call(AuthService.getLinkToResetPassword, requestBody);
+    yield put(requestAuth("Complete"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
-    yield put(requestAuthFailed(errorMassage));
+    yield put(requestAuth(errorMassage));
   }
 }
 
@@ -64,10 +65,10 @@ function* resetPasswordSaga(action: ResetPassword): Generator<Effect, void> {
   try {
     const requestBody = action.payload;
     yield call(AuthService.resetPassword, requestBody);
-    yield put(requestAuthFailed("Complete-reset-password"));
+    yield put(requestAuth("Complete-reset-password"));
   } catch (error: any) {
     const errorMassage = error.response.data.message;
-    yield put(requestAuthFailed(errorMassage));
+    yield put(requestAuth(errorMassage));
   }
 }
 
@@ -79,7 +80,7 @@ function* verificationRecoveryTokenSaga(
     const isValid = yield call(AuthService.verificationRecoveryToken, token);
     yield put(requestVerificationSuccess(isValid));
   } catch (error: any) {
-    yield put(requestAuthFailed());
+    yield put(requestAuth());
   }
 }
 

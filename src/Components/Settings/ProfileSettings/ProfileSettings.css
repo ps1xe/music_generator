@@ -1,0 +1,124 @@
+body {
+    background: rgb(46, 46, 46);
+}
+
+.crop-image-block {
+    width: 100%;
+    display: flex;
+    background: rgba(0, 0, 0, 0.925);
+    margin: 0px;
+    max-height: 60vh;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+
+/* Настройка стиля кнопки загрузки */
+
+.custom-file-input {
+    background-color: 0;
+    border: 2px solid #818181;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 120px;
+    font-size: 16px;
+    color: 0;
+    cursor: pointer;
+    background-image: url('../../../../public/upload.png');
+    background-position: center;
+    background-size: 300px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=file] {
+    opacity: 0;
+}
+
+.custom-file-input:hover {
+    background-color: 0;
+    opacity: 0.8;
+}
+
+.canvas {
+    object-fit: contain;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    margin-right: 5%;
+}
+
+.avatar {
+    margin-right: 4%;
+    width: 184px;
+    height: 184px;
+    border-radius: 20px;
+}
+
+.custom-file-input:active {
+    background-color: #d9d9d9;
+}
+
+.current-avatar-form {
+    width: 100%;
+    margin-left: 10%;
+    display: flex;
+}
+
+.save-new-avatar-block {
+    display: flex;
+    padding-top: 35px;
+    padding-bottom: 7%;
+    align-items: center;
+    justify-content: end;
+}
+
+.save-button {
+    width: 100%;
+    background: #a775fe;
+    border: none;
+    color: white;
+    height: 50px;
+    border-radius: 20px;
+    font-weight: 400;
+    transition: background 0.5s ease;
+}
+
+.save-button:hover {
+    background: #8e4efc;
+}
+
+@media(max-width:1000px) {
+    .custom-file-input {
+        background-image: url('https://svgshare.com/i/s04.svg');
+        background-size: 80px;
+    }
+}
+
+@media(max-width:740px) {
+    .current-avatar-form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .custom-file-input {
+        margin-top: 25px;
+        width: 120px;
+        margin-right: 0px;
+        height: 120px;
+    }
+    .save-new-avatar-block {
+        width: 100%;
+    }
+    .canvas {
+        margin: 0;
+    }
+    .avatar {
+        margin-right: 6%;
+        width: 140px;
+        height: 140px;
+    }
+}
