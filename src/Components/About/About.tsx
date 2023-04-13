@@ -1,13 +1,26 @@
 import DefaultNavbar from "../Header/DefaultNavbar";
 import "./About.css"
 import "../Contacs/Contacs.css"
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../../redux/actions/users.actions";
 
 const About = () => {
     document.body.style.backgroundColor = 'black';
+    const dispatch = useDispatch();
+    const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => { dispatch(getProfile()) }, [dispatch]);
+
+    const responseUser = useSelector((state: any) => state.responseUser)
+    useMemo(() => {
+        if (responseUser === 'Complete') {
+            setIsAuth(true)
+        }
+    }, [responseUser]);
     return (
 
         <>
-            <DefaultNavbar />
+            <DefaultNavbar isAuth={isAuth} />
             <div className="about">
 
                 <div style={{ display: "flex", alignItems: "center" }}>

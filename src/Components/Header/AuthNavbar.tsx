@@ -9,6 +9,22 @@ export interface AuthProfileProps {
 
 
 const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
+
+    // function exit() {
+    //     const cookies = document.cookie.split('; ');
+
+    //     for (let i = 0; i < cookies.length; i++) {
+    //         const cookie = cookies[i].split('=');
+    //         const name = cookie[0];
+    //         const value = cookie[1];
+    //         const isHttpOnly = document.cookie.split(';').some(c => c.trim().startsWith(`${name}=`) && c.trim().endsWith('HttpOnly'));
+
+    //         if (isHttpOnly && (name === 'refreshToken' || name === 'token')) {
+    //             document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+    //         }
+    //     }
+    // }
+
     return (
 
         <Navbar expand="sm" variant="dark" fixed="top" style={{ background: "#0b0b0b" }}>
@@ -26,7 +42,7 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
                     </Offcanvas.Header>
                     <Offcanvas.Body style={{ textAlign: "center", height: "57px" }}>
                         <Nav className="me-auto">
-                            <Link to='/home' className='menu_button'>Главная</Link>
+                            <Link to='/home' className='menu_button-active'>Главная</Link>
                             <Link to='/about' className='menu_button'>О проекте</Link>
                             <Link to='/contacs' className='menu_button'>Контакты</Link>
 
@@ -37,12 +53,13 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
                                 title={<img alt="" style={{ width: "40px", height: "40px", borderRadius: "100%" }} src={avatarUrl}></img>}
                                 id='offcanvasNavbarDropdown-expand-sm'
                             >
-                                <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>Signed in as {username}</div>
+                                <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>{username}</div>
                                 <NavDropdown.Divider />
 
-                                <NavDropdown.Item className="dropdown-text" href="/settings">Your profile</NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/settings">Профиль</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item className="dropdown-text" href="/main">Sign Out</NavDropdown.Item>
+                                <NavDropdown.Item className="dropdown-text" href="/main">Выйти</NavDropdown.Item>
+                                {/* onClick={exit} */}
                             </NavDropdown>
                         </Nav>
 

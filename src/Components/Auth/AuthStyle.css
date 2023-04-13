@@ -105,7 +105,7 @@ body {
 }
 
 .error-block {
-    height: 80px;
+    height: 110px;
     min-width: 30%;
     position: relative;
     margin-top: 3%;
@@ -236,25 +236,13 @@ body {
     }
     .error-block {
         width: 90%;
+        height: 160px;
     }
     .recovery-password-box {
         width: 70%;
     }
-}
-
-@media(max-width:1200px) {
-    .alert-block {
-        width: 60%;
-    }
-}
-
-@media(max-width:600px) {
     .alert-block {
         width: 80%;
-    }
-    .error-block {
-        height: 140px;
-        text-align: center;
     }
     .alert-img {
         width: 35px;
@@ -262,5 +250,11 @@ body {
     .error-auth {
         width: 70%;
         height: 50px;
+    }
+}
+
+@media(max-width:1200px) {
+    .alert-block {
+        width: 60%;
     }
 }

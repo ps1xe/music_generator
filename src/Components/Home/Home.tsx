@@ -12,7 +12,8 @@ const Home = () => {
     let pages = []
     let k = 0;
     const [soundName, setSoundName] = useState('');
-    const [soundTime, setSoundTime] = useState('');
+    const [soundTime, setSoundTime] = useState("");
+  
     const [genre, setGenre] = useState('Phonk');
     const [placeholderSoundName, setPlaceholderSoundName] = useState('Имя трека');
     const [formClass, setformClass] = useState('menu-generate');
@@ -27,8 +28,19 @@ const Home = () => {
         setPlaceholderSoundName("Имя трека")
     }
 
+
+
     const soundTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSoundTime(event.target.value);
+        const { value } = event.target;
+        if (/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(value)) {
+            if (value <= "02:00") {
+
+                setSoundTime(value);
+            } else {
+                setSoundTime("02:00");
+            }
+        }
+
     }
 
     const genreChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -47,9 +59,13 @@ const Home = () => {
             return;
         }
         else {
-            await dispatch(generateSound({ name: soundName, genre: genre, length: Number(soundTime) }));
+            const [minutes, sec] = soundTime.split(":");
+            const len = Number(minutes)*60 + Number(sec)
+            console.log(soundTime);
+            await dispatch(generateSound({ name: soundName, genre: genre, length: len }));
             await dispatch(getSounds(1));
-            setPlaceholderSoundName("name")
+            setSoundTime("00:00");
+            setPlaceholderSoundName("Имя трека")
             setformClass("menu-generate");
             setNameSoundClass("name-music")
             setSoundName('');
@@ -80,21 +96,23 @@ const Home = () => {
 
 
 
-    if (stateSounds.meta.hasPreviousPage) pages.push(<Pagination.Prev key="prev" onClick={() => onChangePage(stateSounds.meta.page - 1)} />);
+    if (stateSounds.meta.hasPreviousPage) pages.push(<div className="pagination-prev" key="prev" onClick={() => onChangePage(stateSounds.meta.page - 1)}>{"🠘"}</div>);
 
     if (stateSounds.meta.hasNextPage || stateSounds.meta.page !== 1) {
         for (let page = 1; page <= stateSounds.meta.pageCount; page++) {
             pages.push(
-                <Pagination.Item key={page} data-page={page} active={page === stateSounds.meta.page} onClick={() => onChangePage(page)}>{page}</Pagination.Item>
+                <div className={"pagination-item" + (page === stateSounds.meta.page ? "-active" : "")} key={page} data-page={page} onClick={() => onChangePage(page)}>{page}</div>
             )
         }
 
         if (stateSounds.meta.hasNextPage) {
             pages.push(
-                <Pagination.Next key="next" onClick={() => onChangePage(stateSounds.meta.page + 1)} />
+                <div className="pagination-next" key="next" onClick={() => onChangePage(stateSounds.meta.page + 1)}>{"🠚"}</div>
             )
         }
     }
+
+  
 
 
     return (
@@ -123,7 +141,7 @@ const Home = () => {
                                 <option value="Rock">Rock</option>
                             </select>
 
-                            <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "60px" }} value={soundTime} type="text" placeholder="00:00" />
+                            <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "65px" }} type="time" value={soundTime} max="02:00" />
 
                         </form>
                         <button onClick={handleSubmit} type="button" className="gen-button">Генерировать</button>
@@ -146,6 +164,8 @@ const Home = () => {
                                 loaded={sound.loaded}
                             />
                         )) : []}
+
+
 
                 </div>
                 <div style={{ height: "40px", marginBottom: "50px" }}>

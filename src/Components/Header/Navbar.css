@@ -27,11 +27,6 @@
     color: white;
 }
 
-.auth_button:hover {
-    color: #fefefe;
-    border: 2px #0053ff solid;
-}
-
 @media(max-width:850px) {
     .menu_button {
         color: #fefefe;
@@ -55,6 +50,32 @@
 .menu_button:hover:after,
 .menu_button:focus:after {
     width: 100%;
+}
+
+.menu_button-active {
+    padding: 8px;
+    padding-top: 14px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background: 0%;
+    text-decoration: none;
+    color: white;
+}
+
+.menu_button-active:after {
+    background-color: #a775fe;
+    display: block;
+    content: "";
+    height: 2px;
+    width: 100%;
+    -webkit-transition: width .3s ease-in-out;
+    -moz--transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+
+.menu_button-active:hover {
+    color: white;
 }
 
 .dropdown-text {

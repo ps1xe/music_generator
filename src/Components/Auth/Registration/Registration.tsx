@@ -11,7 +11,9 @@ const Registration = () => {
     const [username, setUsername] = useState('');
     const [repetePassword, setRepetePassword] = useState('');
     const [passwordComparison, setPasswordComparison] = useState(true);
+    const [maxLenUsernameSatisfied, setMaxLenUsernameSatisfied] = useState(true);
     const [isEmail, setIsEmail] = useState(true);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     document.body.style.backgroundColor = '#e7e8ea';
@@ -65,6 +67,8 @@ const Registration = () => {
 
     const usernameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value)
+        if (event.target.value.length > 10) setMaxLenUsernameSatisfied(false);
+        else setMaxLenUsernameSatisfied(true);
         dispatch(zeroingError())
     }
 
@@ -80,6 +84,10 @@ const Registration = () => {
             return;
         }
         if (!passwordComparison) {
+            event.preventDefault();
+            return;
+        }
+        if(!maxLenUsernameSatisfied){
             event.preventDefault();
             return;
         }
@@ -145,7 +153,7 @@ const Registration = () => {
                 </div>
 
 
-                {(!isEmail || !passwordComparison || stateAuth !== "" || !checkPasswordStrength(password).valid) ? (<div className="error-block">
+                {(!isEmail || !maxLenUsernameSatisfied || !passwordComparison || stateAuth !== "" || !checkPasswordStrength(password).valid) ? (<div className="error-block">
                     <svg className="alert-img" height="35px" width="35px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 506.4 506.4" >
                         <circle style={{ fill: '#DF5C4E' }} cx="253.2" cy="253.2" r="249.2" />
@@ -167,6 +175,7 @@ const Registration = () => {
                     </svg>
                     <div className="alert-block" style={{ display: "flex", flexDirection: 'column', alignItems: "center", justifyContent: "center", width: "95%" }}>
                         {!isEmail ? <div className="error-auth">Не существует такого email</div> : <div style={{ display: "none" }}></div>}
+                        {!maxLenUsernameSatisfied ? (<div className="error-auth">Максимальная длина имени пользователя - 10</div>) : <div style={{ display: "none" }}></div>}
                         {passwordComparison ? <div style={{ display: "none" }}></div> : <div className="error-auth">Пароли не совпадают!!!</div>}
                         {(stateAuth !== '' && passwordComparison && isEmail) ? (<div className="error-auth">{stateAuth}</div>) : <div style={{ display: "none" }}></div>}
                         {!checkPasswordStrength(password).valid && password !== '' ? <div className="error-auth">{checkPasswordStrength(password).message}</div> : <div style={{ display: "none" }}></div>}

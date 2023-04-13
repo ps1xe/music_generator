@@ -1,15 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../../redux/actions/users.actions";
 import DefaultNavbar from "../Header/DefaultNavbar";
 import "./Contacs.css"
 
 const Contacs = () => {
 
     document.body.style.backgroundColor = 'black';
+    const dispatch = useDispatch();
+    const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => { dispatch(getProfile()) }, [dispatch]);
+
+    const responseUser = useSelector((state: any) => state.responseUser)
+    useMemo(() => {
+        if (responseUser === 'Complete') {
+            setIsAuth(true)
+        }
+    }, [responseUser]);
+
 
     return (
         <>
             <DefaultNavbar
                 theme={"white"}
+                isAuth={isAuth}
             />
             <div style={{ height: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div className="contact-line"></div>

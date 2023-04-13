@@ -13,6 +13,7 @@ export const ProfileSettings = () => {
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
     const [aspect, setAspect] = useState<number | undefined>(1)
     const imgRef = useRef<HTMLImageElement>(null)
+    const [maxLenUsernameSatisfied, setMaxLenUsernameSatisfied] = useState(true);
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const [avatarUrl, setAvatarUrl] = useState('');
     const [nickname, setNickname] = useState('');
@@ -29,6 +30,8 @@ export const ProfileSettings = () => {
 
     const changeNewNickname = (event: ChangeEvent<HTMLInputElement>) => {
         setNickname(event.target.value);
+        if (event.target.value.length > 10) setMaxLenUsernameSatisfied(false);
+        else setMaxLenUsernameSatisfied(true);
 
     }
 
@@ -58,6 +61,9 @@ export const ProfileSettings = () => {
     }
 
     const submit = async (event: any) => {
+        if(!maxLenUsernameSatisfied){
+            return;
+        }
         await shiftUserData();
     }
 
@@ -175,8 +181,10 @@ export const ProfileSettings = () => {
                         <Form.Label style={{ color: "white", fontFamily: "Roboto", fontSize: "18px", marginBottom: "0" }}>Имя профиля</Form.Label>
                         <Form.Label style={{ color: "#818181", fontFamily: "Roboto", fontSize: "15px" }}>Поменяйте имя, которое будет отображаться у вас в профиле</Form.Label>
                     </div>
-                    <Form.Control style={{ marginLeft: "6%", background: "0", height: "50px", color: "white", borderRadius: "20px", border: "2px solid #818181" }} onChange={changeNewNickname} type="text" placeholder={stateProfile.username} />
-
+                    <div style={{ width: "94%", display: "flex", flexDirection: "column" }}>
+                        <Form.Control style={{ marginTop: "30px", width: "100%", marginLeft: "6%", background: "0", height: "50px", color: "white", borderRadius: "20px", border: "2px solid #818181" }} onChange={changeNewNickname} type="text" placeholder={stateProfile.username} />
+                        {!maxLenUsernameSatisfied ? (<div style={{ marginLeft: "6%", marginTop: "10px" }} className="error-auth">Максимальная длина - 10</div>) : <div style={{ height: "20px", marginTop: "10px" }}></div>}
+                    </div>
                 </Form.Group>
 
             </Form>

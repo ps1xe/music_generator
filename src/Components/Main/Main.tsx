@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getProfile } from '../../redux/actions/users.actions';
 import DefaultNavbar from '../Header/DefaultNavbar';
 import ExampleSoundPlayer from '../Home/ExampleSoundPlayer';
 import './Main.css'
@@ -8,8 +10,9 @@ const Main = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const circles = Array(20).fill(null);
-
+    const dispatch = useDispatch();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -69,7 +72,16 @@ const Main = () => {
     const handleNextClick = () => {
         setActiveIndex((prevIndex: any) => (prevIndex === exampleSounds.length - 1 ? 0 : prevIndex + 1));
     };
-    
+
+    useEffect(() => { dispatch(getProfile()) }, [dispatch]);
+
+    const responseUser = useSelector((state: any) => state.responseUser)
+    useMemo(() => {
+        if (responseUser === 'Complete') {
+            setIsAuth(true)
+        }
+    }, [responseUser]);
+
     return (
         <>
             <ul className="circles">
@@ -79,8 +91,8 @@ const Main = () => {
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
 
-                    {windowWidth > 850 ? <DefaultNavbar theme={"dark"} />
-                        : <DefaultNavbar theme={"white"} />
+                    {windowWidth > 850 ? <DefaultNavbar theme={"dark"} isAuth={isAuth} />
+                        : <DefaultNavbar theme={"white"} isAuth={isAuth} />
                     }
 
                     <div className="main-box">

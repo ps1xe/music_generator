@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import AudioPlayer from 'react-audio-player';
 import { useDispatch } from 'react-redux';
 import { deleteSound, getSounds } from '../../redux/actions/sound.actions';
-import './Home.css';
+import './ExamplePlayer.css';
 
 export interface SoundPlayerProps {
     id: string
@@ -77,14 +77,14 @@ const ExampleSoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlaye
     }
 
     return (
-        <div className="custom-audio-player">
+        <div className="custom-audio-player-example">
             <div className="player-info">
-                <div className="player-info__name">{name}</div>
+                <div className="player-info__name-example">{name}</div>
                 <div className="player-info__genre">{genre}</div>
                 {/* <div className="player-info__length">{formatTime(duration)}</div> */}
             </div>
             <audio ref={audioRef} src={url} preload="metadata" />
-            <div className="player-controls">
+            <div className="player-controls-example">
                 <button className="player-controls__play-pause" onClick={handlePlayPause}>
                     {isPlaying ? <svg className='play_player' width="50" height="50" viewBox="0 0 50 50">
                         <defs>
