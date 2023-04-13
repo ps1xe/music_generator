@@ -9,6 +9,7 @@ import {
   requestAuth,
   requestVerificationSuccess,
   ResetPassword,
+  Unlogin,
   UpdateTokens,
   VerificationRecoveryToken,
 } from "../actions/auth.actions";
@@ -84,6 +85,14 @@ function* verificationRecoveryTokenSaga(
   }
 }
 
+function* unloginSaga(action: Unlogin): Generator<Effect, void, boolean> {
+  try {
+    yield call(AuthService.unlogin);
+  } catch (error: any) {
+    yield put(requestAuth());
+  }
+}
+
 export function* watcherAuthSaga(): Generator<Effect, void> {
   yield takeEvery(AuthActions.LOGIN, loginSaga);
   yield takeEvery(AuthActions.REGISTRATION, registrationSaga);
@@ -97,4 +106,5 @@ export function* watcherAuthSaga(): Generator<Effect, void> {
     AuthActions.VERIFICATION_RECOVERY_TOKEN,
     verificationRecoveryTokenSaga
   );
+  yield takeEvery(AuthActions.UNLOGIN, unloginSaga);
 }

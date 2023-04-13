@@ -1,5 +1,7 @@
 import { Container, Nav, NavDropdown, Navbar, Offcanvas } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { unlogin } from "../../redux/actions/auth.actions";
 import "./Navbar.css"
 
 export interface AuthProfileProps {
@@ -7,23 +9,12 @@ export interface AuthProfileProps {
     avatarUrl: string;
 }
 
+const AuthNavbar = ({ username, avatarUrl, }: AuthProfileProps) => {
+    const dispatch = useDispatch();
 
-const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
-
-    // function exit() {
-    //     const cookies = document.cookie.split('; ');
-
-    //     for (let i = 0; i < cookies.length; i++) {
-    //         const cookie = cookies[i].split('=');
-    //         const name = cookie[0];
-    //         const value = cookie[1];
-    //         const isHttpOnly = document.cookie.split(';').some(c => c.trim().startsWith(`${name}=`) && c.trim().endsWith('HttpOnly'));
-
-    //         if (isHttpOnly && (name === 'refreshToken' || name === 'token')) {
-    //             document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
-    //         }
-    //     }
-    // }
+    function exit() {
+        dispatch(unlogin());
+    }
 
     return (
 
@@ -58,8 +49,8 @@ const AuthNavbar = ({ username, avatarUrl }: AuthProfileProps) => {
 
                                 <NavDropdown.Item className="dropdown-text" href="/settings">Профиль</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item className="dropdown-text" href="/main">Выйти</NavDropdown.Item>
-                                {/* onClick={exit} */}
+                                <NavDropdown.Item className="dropdown-text" onClick={exit} href='/main'>Выйти</NavDropdown.Item>
+
                             </NavDropdown>
                         </Nav>
 

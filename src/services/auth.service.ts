@@ -59,6 +59,10 @@ export default class AuthService {
     return (await $api.post("http://localhost:4000/auth/updateTokens")).data;
   }
 
+  static async unlogin(): Promise<AxiosResponse<void>> {
+    return (await $api.get("http://localhost:4000/auth/unlogin")).data;
+  }
+
   static async getLinkToResetPassword(
     getLinkToResetPasswordBody: GetLinkToResetPasswordBody
   ): Promise<AxiosResponse<object>> {

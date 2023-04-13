@@ -20,6 +20,7 @@ export enum AuthActions {
   VERIFICATION_RECOVERY_TOKEN = "VERIFICATION_RECOVERY_TOKEN",
   SUCCESS_VERIFICATION_RECOVERY_TOKEN = " SUCCESS_VERIFICATION_RECOVERY_TOKEN",
   RESET_PASSWORD = "RESET_PASSWORD ",
+  UNLOGIN = "UNLOGIN",
 }
 
 export const requestAuth = (payload?: string) => ({
@@ -36,6 +37,12 @@ export const login = (payload: LoginBody) => {
   return {
     type: AuthActions.LOGIN,
     payload,
+  };
+};
+
+export const unlogin = () => {
+  return {
+    type: AuthActions.UNLOGIN,
   };
 };
 
@@ -84,6 +91,10 @@ export const getLinkToResetPassword = (payload: GetLinkToResetPasswordBody) => {
 export interface Login {
   type: AuthActions.LOGIN;
   payload: LoginBody;
+}
+
+export interface Unlogin {
+  type: AuthActions.UNLOGIN;
 }
 
 export interface RequestAuthFailed {

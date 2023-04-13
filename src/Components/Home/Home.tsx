@@ -13,7 +13,7 @@ const Home = () => {
     let k = 0;
     const [soundName, setSoundName] = useState('');
     const [soundTime, setSoundTime] = useState("");
-  
+    const [isAuth, setIsAuth] = useState(false)
     const [genre, setGenre] = useState('Phonk');
     const [placeholderSoundName, setPlaceholderSoundName] = useState('Имя трека');
     const [formClass, setformClass] = useState('menu-generate');
