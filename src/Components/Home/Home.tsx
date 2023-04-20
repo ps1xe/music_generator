@@ -12,7 +12,7 @@ const Home = () => {
     let pages = []
     let k = 0;
     const [soundName, setSoundName] = useState('');
-    const [soundTime, setSoundTime] = useState("");
+    const [soundTime, setSoundTime] = useState("00:00");
     const [isAuth, setIsAuth] = useState(false)
     const [genre, setGenre] = useState('Phonk');
     const [placeholderSoundName, setPlaceholderSoundName] = useState('Имя трека');

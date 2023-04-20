@@ -15,19 +15,34 @@ export interface SoundPlayerProps {
 
 const SoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlayerProps) => {
 
-
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [remainingTime, setRemainingTime] = useState(0);
 
+
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.addEventListener("loadedmetadata", () => {
+                if (audioRef.current) {
+                    setDuration(audioRef.current.duration);
+                    setCurrentTime(0);
+                    setRemainingTime(audioRef.current.duration);
+                }
+            });
+        }
+    }, []);
+
 
     const onClickDelete = () => {
         dispatch(deleteSound(id));
         dispatch(getSounds(1));
     }
+
 
     useEffect(() => {
         if (audioRef.current) {
@@ -51,7 +66,6 @@ const SoundPlayer = ({ id, name, genre, length, url, loaded }: SoundPlayerProps)
         return () => clearInterval(interval);
     }, [isPlaying, remainingTime]);
 
-    // Функция для преобразования секунд в формат ММ:СС
     function formatTime(time: any) {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);

@@ -34,7 +34,7 @@ const Main = () => {
                 name={'Example_1'}
                 genre={'Classical'}
                 length={'sound.length'}
-                url={'https://s1.busic.net/files/mp3/pislya_doschu_-_hochesh_busic.net_128.mp3'}
+                url={'https://samplelib.com/lib/preview/wav/sample-12s.wav'}
                 loaded={true}
             />
         </div>,

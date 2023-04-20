@@ -116,7 +116,7 @@ export const ChangePassword = () => {
                     </div>
                 </Form>
                 {(stateChangePassword === '' && passwordComparison) && (<div className="error-change"></div>)}
-                {passwordComparison ? <div></div> : <div className="error-change">Пароли не совпадают!!!</div>}
+                {passwordComparison ? <div></div> : <div className="error-auth">Пароли не совпадают!!!</div>}
                 {(stateChangePassword !== '' && passwordComparison && stateChangePassword !== 'Complete') ? (<div className="error-change">{stateChangePassword}</div>) : <div></div>}
                 {(stateChangePassword === 'Complete' && passwordComparison) ? (<div className="complete-change">Успешно сохранено</div>) : <div></div>}
                 {!checkPasswordStrength(newPassword).valid && newPassword !== '' ? <div className="error-auth">{checkPasswordStrength(newPassword).message}</div> : <div style={{ display: "none" }}></div>}
