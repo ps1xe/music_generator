@@ -14,7 +14,7 @@ const Home = () => {
     const [soundName, setSoundName] = useState('');
     const [soundTime, setSoundTime] = useState("00:00");
     const [isAuth, setIsAuth] = useState(false)
-    const [genre, setGenre] = useState('Phonk');
+    const [genre, setGenre] = useState('Classical');
     const [placeholderSoundName, setPlaceholderSoundName] = useState('Имя трека');
     const [formClass, setformClass] = useState('menu-generate');
     const [nameSoundClass, setNameSoundClass] = useState('name-music');
@@ -69,7 +69,7 @@ const Home = () => {
             setformClass("menu-generate");
             setNameSoundClass("name-music")
             setSoundName('');
-            setGenre('Phonk');
+            setGenre('Classical');
 
         }
     }
@@ -135,10 +135,8 @@ const Home = () => {
                             <input value={soundName} onChange={soundNameChange} id="soundName" className={nameSoundClass} style={{ width: "70%" }} placeholder={placeholderSoundName} />
 
                             <select value={genre} onChange={genreChange} className="genre-select" style={{ width: "27%", minWidth: "100px" }}>
-                                <option value="Phonk">Phonk</option>
                                 <option value="Classical">Classical</option>
-                                <option value="Jazz">Jazz</option>
-                                <option value="Rock">Rock</option>
+                                <option value="8-bit">Rock</option>
                             </select>
 
                             <input onChange={soundTimeChange} className="time-music" style={{ width: "3%", minWidth: "65px" }} type="time" value={soundTime} max="02:00" />

@@ -19,7 +19,6 @@ const Main = () => {
 
         window.addEventListener('resize', handleResize);
 
-        // Не забудьте удалить обработчик события при размонтировании компонента
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -45,18 +44,6 @@ const Main = () => {
                 id={'dgdgdgd'}
                 name={'Example_2'}
                 genre={'8-bit music'}
-                length={'sound.length'}
-                url={'https://s1.busic.net/files/mp3/pislya_doschu_-_hochesh_busic.net_128.mp3'}
-                loaded={true}
-            />
-        </div>,
-        <div className='example-box' key={2}>
-            <img className='example-img' src="https://img3.goodfon.ru/wallpaper/nbig/f/a5/gitara-rok-muzhchina-muzyka.jpg" alt=''></img>
-            <ExampleSoundPlayer
-                key={"sound3"}
-                id={'dgdgdgd'}
-                name={'Example_3'}
-                genre={'Rock'}
                 length={'sound.length'}
                 url={'https://s1.busic.net/files/mp3/pislya_doschu_-_hochesh_busic.net_128.mp3'}
                 loaded={true}
